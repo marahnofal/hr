@@ -1,0 +1,29 @@
+@import "tailwindcss";
+.bg-green{
+    background-color: #89C43D;
+}
+.border-green{
+    border:solid 1px #89C43D;
+}
+.text-green{
+    color: #89C43D;
+}
+.secondary-bg{
+  background-color: #30BE821A;
+}
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+.icon-color{
+  color:#30BE82
+}
+.sidebar{
+  background:#A2A1A80D;
+}
+
