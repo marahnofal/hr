@@ -23,6 +23,11 @@ export default function Navbar() {
       header:'Daily Check in / Check out',
       title:'Mark your Attendance'
 
+    },
+    '/requestmanagement':{
+      header:'Leave Requests',
+      title:'Leave Requests Management '
+
     }
 
   }
