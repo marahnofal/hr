@@ -28,7 +28,8 @@ export default function AllEmployees() {
 
   return (
     <>
-    <div className="flex justify-between pe-5  w-full">
+    <div className='w-full'>
+      <div className="flex justify-between pe-5  w-full">
       <form className="md:max-w-md ">   
     <label htmlFor="search" className="block mb-2.5 text-sm font-medium text-heading sr-only ">Search</label>
     <div className="relative">
@@ -46,6 +47,8 @@ export default function AllEmployees() {
 
 
     <Table column={columns} rows={filteredData}/>
+    </div>
+    
 
     
     </>

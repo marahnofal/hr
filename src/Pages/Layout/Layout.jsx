@@ -9,12 +9,17 @@ import { Outlet } from 'react-router-dom'
 export default function Layout() {
   return (
     <>
-   <div className='h-full flex w-full lg:gap-9  '>
-    <aside className='w-60'>
+    <div className=' grid grid-cols-6'>
+
+      
+    </div>
+   <div className='h-full flex w-full gap-7 lg:gap-9  '>
+    <aside className='md:w-50  me-5'>
         <Sidebar/>
     </aside>
     <div className='flex flex-col w-full'>
         <Navbar/>
+        
         <Outlet/>
         
         

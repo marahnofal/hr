@@ -8,6 +8,7 @@ import { data,monthlyData,tasks } from '../../assets/data';
 import Table from '../../Components/Table/Table';
 
 import attendanceData from './rows';
+import Search from '../../Components/Search/Search';
 
 
 
@@ -49,22 +50,24 @@ export default function Admin() {
   return (
     
     <>
+    
     <div className='grid grid-cols-3 w-full  '>
       
   
-    <div className='grid grid-cols-1 w-full gap-2 md:grid-cols-2 col-span-2 md:h-[328px] ms-5 '>
-      <CardState image={users2} title={'Total Employee'} records={560} percentage={12}/>
-        <CardState image={users2} title={'Total Employee'} records={560} percentage={12}/>
-        <CardState image={users2} title={'Total Employee'} records={560} percentage={12}/>
-        <CardState image={users2} title={'Total Employee'} records={560} percentage={12}/>
-        <div className='col-span-2'>
+    <div className='grid grid-cols-1 w-full gap-2 md:grid-cols-2 col-span-3 md:col-span-2  ms-5 '>
+      <div className='col-span-2 md:col-span-1'><CardState image={users2} title={'Total Employee'} records={560} percentage={12}/></div>
+      <div className='col-span-2 md:col-span-1'><CardState image={users2} title={'Total Employee'} records={560} percentage={12}/></div>
+      <div className='col-span-2 md:col-span-1'><CardState image={users2} title={'Total Employee'} records={560} percentage={12}/></div>
+      <div className='col-span-2 md:col-span-1'><CardState image={users2} title={'Total Employee'} records={560} percentage={12}/></div>
+     
+        <div className='md:col-span-2 col-span-3 '>
           <AttendanceChart data={data} monthlyData={monthlyData}  />
           <Table column={columns} rows={attendanceData} />
           
         </div>
        
     </div>  
-    <div className='col-span-1'>
+    <div className='md:col-span-1 col-span-3'>
       <Calender tasks={tasks}/>
       
 

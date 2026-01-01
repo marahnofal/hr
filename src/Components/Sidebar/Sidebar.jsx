@@ -48,20 +48,12 @@ export default function Sidebar() {
             Label: 'Payroll'
             , icon: cash
         },
-        {
-            id:5,
-            Label: 'Jobs'
-            , icon: apps
-        },
-        {
-            id:6,
-            Label: 'Candidates'
-            , icon: user
-        },
+        
         {
             id:7,
             Label: 'Leaves'
-            , icon: notepad
+            , icon: notepad,
+            path:'/requestmanagement'
         },
         {
             id:8,

@@ -18,6 +18,7 @@ import Register from './Pages/Register/Register'
 import Attendace from './Pages/Attendance/Attendace'
 import Request from './Pages/Request/Request';
 import Checkin from './Pages/Checkin/Checkin'
+import RequestManagement from './Pages/RequestManagement/RequestManagement'
 
 
 
@@ -37,6 +38,7 @@ function App() {
       {path:'/login/forgetpassword/otp',element:<Otp/>},
       {path:'/login/forgetpassword/otp/resetpassword',element:<ResetPasword/>},
       {path:'/checkin',element:<Checkin/>},
+      {path:'/requestmanagement',element:<RequestManagement/>},
 
     ]}
     
