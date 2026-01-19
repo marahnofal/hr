@@ -39,12 +39,12 @@ export default function Request() {
     <>
     <form action="" className='mx-2'>
 <div>
-            <select name="Type" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.Type} id="" className='px-2  border-2 border-gray-200 outline-0 w-full h-[56px] rounded-lg col-span-1 my-2 '>
-            <option  value="">Type</option>
-            <option value="planned">Planned Vacation</option>
-            <option value="sick">Sick Leave</option>
-            <option value="emergency">Emergency</option>
-            <option value="mariage">Mariage</option>
+            <select name="Type" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.Type} id="" className='text-gray-900 px-2  border-2 border-gray-200 outline-0 w-full h-[56px] rounded-lg col-span-1 my-2 '>
+            <option className='text-gray-700' value="">Type</option>
+            <option className='text-gray-700' value="planned">Planned Vacation</option>
+            <option className='text-gray-700' value="sick">Sick Leave</option>
+            <option className='text-gray-700' value="emergency">Emergency</option>
+            <option className='text-gray-700' value="mariage">Mariage</option>
         </select>
         {formik.errors.Type&&formik.touched.Type&&<p className='text-red-500'>{formik.errors.Type}</p>}
 </div>

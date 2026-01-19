@@ -1,45 +1,115 @@
-import React from 'react'
-import Navbar from '../../Components/Navbar/Navbar'
-import logo from '../../assets/logo.png'
-import { Link } from 'react-router-dom'
+import { useState } from 'react';
+import Navbar from '../../Components/Navbar/Navbar';
+import logo from '../../assets/logo.png';
+import { Link, useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { loginRequest } from '../../Services/auth';
+import { useAuth } from '../../context/ThemeContext/AuthContext';
 
 export default function Login() {
+  const {login} = useAuth();
+  const navigate = useNavigate();
+  const [serverError, setServerError] = useState('');
+  const loginScema = z.object({
+    email: z.string().nonempty('Email is required'),
+    password: z.string().nonempty('Password is required'),
+  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, touchedFields },
+  } = useForm({
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+    resolver: zodResolver(loginScema),
+    mode: 'onTouched',
+  });
+  const submit = async (data) => {
+    setServerError('');
+    try {
+      const user = await loginRequest(data.email, data.password);
+      login(user);
+
+
+      navigate('/admin');
+    } catch (err) {
+      setServerError(err.message);
+    }
+  };
+
   return (
     <>
-    <div className='flex flex-col items-center justify-center w-full h-screen '>
-       <div  className='flex flex-col   w-[445px] h-[440px] px-5 gap-5'>
-        <div className='w-32'><img src={logo} alt="" /></div>
-        
-      <div>
-          <h2 className='font-bold  text-xl'>Welcome 👋🏻</h2>
-        <p className='font-light'>Please Login Here</p>
-      </div>
-         <form action="" className='flex flex-col gap-10 '>
-            <div className='relative h-5 w-full'>
-            <input type="text" id='email' className='ps-3 pt-5 outline-none border-green rounded-lg w-full'/>
-            <label htmlFor="email" className='absolute ps-2 top-0 left-0 text-green'> Email </label>
-        </div>
-            <div className='relative h-5 '>
-            <input type="password" id='password'  className='ps-3 pt-5 outline-none border-green rounded-lg w-full'/>
-            <label htmlFor="password" className='absolute top-0 left-0 ps-2 text-green'> Password </label>
-        </div>
-        <div className='flex justify-between' >
-            <div className='flex gap-2' >
-                <input className= 'accent-green-400' type="checkbox" />
-            <label htmlFor="">Remember me</label>
+      <div className="flex h-screen w-full flex-col items-center justify-center">
+        <div className="flex h-[440px] w-[445px] flex-col gap-5 px-5">
+          <div className="w-32">
+            <img src={logo} alt="" />
+          </div>
+
+          <div>
+            <h2 className="text-xl font-bold">Welcome 👋🏻</h2>
+            <p className="font-light">Please Login Here</p>
+          </div>
+          <form
+            onSubmit={handleSubmit(submit)}
+            action=""
+            className="flex flex-col gap-10"
+          >
+            <div className="relative my-5 h-5 w-full">
+              <input
+                {...register('email')}
+                type="text"
+                id="email"
+                className="border-green w-full rounded-lg ps-3 pt-5 outline-none"
+              />
+              <p className="text-red-500">
+                {touchedFields.email && errors.email && errors.email.message}
+              </p>
+              <label
+                htmlFor="email"
+                className="text-green absolute top-0 left-0 ps-2"
+              >
+                {' '}
+                Email{' '}
+              </label>
             </div>
-            <Link to={'/login/forgetpassword'} className='text-green'>forget Password</Link>
-
+            <div className="relative my-5 h-5">
+              <input
+                {...register('password')}
+                type="password"
+                id="password"
+                className="border-green w-full rounded-lg ps-3 pt-5 outline-none"
+              />
+              <p className="text-red-500">
+                {touchedFields.password &&
+                  errors.password &&
+                  errors.password.message}
+              </p>
+              <label
+                htmlFor="password"
+                className="text-green absolute top-0 left-0 ps-2"
+              >
+                {' '}
+                Password{' '}
+              </label>
+            </div>
+            <div className="flex justify-between">
+              <Link to={'/login/forgetpassword'} className="text-green">
+                forget Password
+              </Link>
+            </div>
+            <button
+              type="submit"
+              className="bg-green rounded-md p-4 text-lg text-white"
+            >
+              Log in
+            </button>
+          </form>
         </div>
-        
-        </form>
-        
-
-       </div>
-        
-
-
-    </div>
+      </div>
     </>
-  )
+  );
 }

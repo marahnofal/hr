@@ -10,7 +10,7 @@ const employeesData = [
     type: 'Office',
     status: 'Active',
     image: avatar,
-    action: 'View',
+    
   },
   {
     id: 2,
@@ -21,7 +21,7 @@ const employeesData = [
     type: 'Remote',
     status: 'Inactive',
     image: avatar,
-    action: 'Edit',
+    
   },
   {
     id: 3,
@@ -32,7 +32,7 @@ const employeesData = [
     type: 'Office',
     status: 'Active',
     image: avatar,
-    action: 'View',
+    
   },
   {
     id: 4,
@@ -43,7 +43,7 @@ const employeesData = [
     type: 'Remote',
     status: 'Active',
     image: avatar,
-    action: 'Edit',
+    
   },
   {
     id: 5,
@@ -54,7 +54,7 @@ const employeesData = [
     type: 'Office',
     status: 'Inactive',
     image: avatar,
-    action: 'View',
+    
   },
 ]
 

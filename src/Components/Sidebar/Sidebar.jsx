@@ -1,112 +1,139 @@
-import React from 'react'
-import {logo,
-  logoIcon,
-  apps,
-  users,
-  calender,
-  cash,
-  settings,
-  connections,
-  user,
-  notepad,
-  notes,
-  user_setting,
-  sun,
-  moon,
-  darkmoon,}from '../../assets/data'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom';
+
+// Icons
+import { MdOutlineDashboard, MdOutlinePeople } from 'react-icons/md';
+import { CiSettings } from 'react-icons/ci';
+import { RiUserSettingsLine, RiUserCommunityLine } from 'react-icons/ri';
+import { FaRegCalendarCheck } from 'react-icons/fa';
+import { PiNotepad } from 'react-icons/pi';
+import { SlCalender } from 'react-icons/sl';
+
+// Theme hook ✅
+import { useTheme } from '../../context/ThemeContext/ThemeContext.jsx';
+
+// Assets
+import { darkmoon, sun, logo, logoIcon, lightLogo } from '../../assets/data';
+import { useAuth } from '../../context/ThemeContext/AuthContext.jsx';
 
 export default function Sidebar() {
-    const sidebar = [
-        {
-            id:0,
-            Label: 'Dashboard'
-            , icon: apps,
-            path:'/'
-        },
-        {
-            id:1,
-            Label: 'All Employees'
-            , icon: users,
-            path:'/allemployees'
+  const { logout } = useAuth();
+  const { theme, toggleTheme } = useTheme();
+  const navigate = useNavigate();
+  
 
-        },
-        {
-            id:2,
-            Label: 'All Departments'
-            , icon: connections,
-            path:'/department'
-        },
-        {
-            id:3,
-            Label: 'Attendance'
-            , icon: calender,
-            path:'attendance'
-        },
-        {
-            id:4,
-            Label: 'Payroll'
-            , icon: cash
-        },
-        
-        {
-            id:7,
-            Label: 'Leaves'
-            , icon: notepad,
-            path:'/requestmanagement'
-        },
-        {
-            id:8,
-            Label: 'Holidays'
-            , icon: notes
-        },
-        {
-            id:9,
-            Label: 'Roles'
-            , icon: user_setting
-        },
-        {
-            id:10,
-            Label: 'Settings'
-            , icon: settings
-        },
-    ]
-    return (
-        <>
-            <nav className='w-[65px] md:w-60 h-full   sidebar rounded-lg  overflow-y-auto no-scrollbar fixed '>
-                <div className='flex flex-col pt-[30px] md:ps-[30px]  ps-[15px] xl:justify-between xl:gap-1 h-screen '>
-                    <div className='md:w-[108px] md:h-[30px] w-[35px] h-[30px]'>
-                        <img src={logo} alt="" className='hidden md:block w-full' />
-                        <img src={logoIcon} alt="" className='block md:hidden w-full' />
-                    </div>
-                    <div>
-                        {sidebar.map((item) => (
-                            <Link to={item.path} key={item.id}>
-                                <div className="flex gap-5 xl:py-5 py-3">
-                                    <img src={item.icon} alt="" />
-                                    <p className='hidden md:block'>{item.Label}</p>
-                                </div>
-                            </Link>
-                        ))}
-                    </div>
-                    <div className='flex flex-col md:flex-row gap-3 pb-4 md:w-full  md:justify-center md:items-center md:pe-10 pe-2 '>
-                        <button className="flex items-center gap-2  py-2 px-3 rounded-lg text-white pe-3 bg-green">
-                            <img className="md:w-full " src={sun} alt="sun" />
-                            <span className="hidden md:inline">Light</span>
-                        </button>
-                        <button className="flex items-center gap-2 shadow-2xl py-2 pe-3 rounded-lg ">
-                            <img className='md:w-full ' src={darkmoon}  alt="dark"  />
-                            <span className="hidden md:inline">Dark</span>
-                        </button>
+  const sidebar = [
+    {
+      id: 0,
+      label: 'Dashboard',
+      icon: MdOutlineDashboard,
+      path: '/',
+      
+    },
+    {
+      id: 1,
+      label: 'Employees',
+      icon: MdOutlinePeople,
+      path: '/allemployees',
+    },
+    {
+      id: 2,
+      label: 'Departments',
+      icon: RiUserCommunityLine,
+      path: '/department',
+    },
+    {
+      id: 3,
+      label: 'Attendance',
+      icon: FaRegCalendarCheck,
+      path: '/attendance',
+    },
+    {
+      id: 7,
+      label: 'Leaves',
+      icon: PiNotepad,
+      path: '/requestmanagement',
+    },
+    {
+      id: 8,
+      label: 'Holidays',
+      icon: SlCalender,
+      path: '/holidays',
+    },
+    {
+      id: 9,
+      label: 'Roles',
+      icon: RiUserSettingsLine,
+      path: '/roles',
+    },
+    {
+      id: 10,
+      label: 'Settings',
+      icon: CiSettings,
+      path: '/settings',
+    },
+  ];
+  const logoutButton = () => {
+    logout();
+    navigate('/login');
+  };
 
+  return (
+    <nav className="fixed h-full w-[65px] shadow-lg md:w-60">
+      <div className="flex h-full flex-col justify-between px-4 py-6">
+        {/* Logo */}
+        <div className="mb-6">
+          {theme === 'light' ? (
+            <img
+              src={logo}
+              alt="logo"
+              className="hidden w-full md:block md:w-[100px]"
+            />
+          ) : (
+            <img
+              src={lightLogo}
+              alt="logo"
+              className="hidden w-full md:block md:w-[100px]"
+            />
+          )}
 
+          <img src={logoIcon} alt="logo" className="w-full md:hidden" />
+        </div>
 
-                    </div>
+        {/* Links */}
+        <div className="space-y-4">
+          {sidebar.map((item) => {
+            const Icon = item.icon;
+            return (
+              <Link
+                key={item.id}
+                to={item.path}
+                className="flex items-center gap-4 text-sm font-medium hover:text-green-400 active:text-green-500 dark:hover:text-green-400 dark:active:text-green-500"
+              >
+                <Icon size={20} />
+                <span className="hidden md:block">{item.label}</span>
+              </Link>
+            );
+          })}
+        </div>
 
-                </div>
-            </nav>
-
-        </>
-
-    )
+        {/* Theme Toggle */}
+        <div className="flex flex-col">
+          <button onClick={logoutButton}>Log Out</button>
+          <button
+            onClick={toggleTheme}
+            className="mt-6 flex items-center justify-center gap-2 rounded-lg px-3 py-2 transition-colors"
+          >
+            <img
+              src={theme === 'light' ? darkmoon : sun}
+              alt="theme"
+              className="w-5"
+            />
+            <span className="hidden md:block">
+              {theme === 'light' ? 'Dark Mode' : 'Light Mode'}
+            </span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  );
 }

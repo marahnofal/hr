@@ -1,76 +1,40 @@
-import { avatar } from '../../assets/data';
-
-const employeesData = [
+const departmentsData = [
   {
     id: 1,
-    name: 'Marah Nofal',
-    department: 'Software Engineering',
-    designation: 'Frontend Developer',
-    image: avatar,
+    name: 'Frontend',
+    description: 'Responsible for building user interfaces and ensuring smooth user experience across web applications.',
+    employeesCount: 9,
   },
   {
     id: 2,
-    name: 'Ahmed Hassan',
-    department: 'Backend Development',
-    designation: 'Backend Developer',
-    image: avatar,
+    name: 'Backend',
+    description: 'Handles server-side logic, databases, APIs, and application performance.',
+    employeesCount: 6,
   },
   {
     id: 3,
-    name: 'Sara Ali',
-    department: 'Design',
-    designation: 'UI/UX Designer',
-    image: avatar,
+    name: 'Design',
+    description: 'Focuses on UI/UX design, user research, and visual consistency across products.',
+    employeesCount: 1,
   },
   {
     id: 4,
-    name: 'Omar Khaled',
-    department: 'Quality Assurance',
-    designation: 'QA Engineer',
-    image: avatar,
+    name: 'Quality',
+    description: 'Ensures software quality through manual and automated testing processes.',
+    employeesCount: 17,
   },
   {
     id: 5,
-    name: 'Nour Mohamed',
-    department: 'Data & AI',
-    designation: 'Machine Learning Engineer',
-    image: avatar,
+    name: 'DataAI',
+    description: 'Works on data analysis, machine learning models, and AI-driven solutions.',
+    employeesCount: 11,
   },
   {
     id: 6,
-    name: 'Youssef Adel',
-    department: 'Mobile Development',
-    designation: 'Flutter Developer',
-    image: avatar,
-  },
-  {
-    id: 7,
-    name: 'Kareem Adel',
-    department: 'Mobile Development',
-    designation: 'Flutter Developer',
-    image: avatar,
-  },
-  {
-    id: 8,
-    name: 'Youssef mohamed',
-    department: 'Mobile Development',
-    designation: 'Flutter Developer',
-    image: avatar,
-  },
-  {
-    id: 9,
-    name: 'mohamed ahmed',
-    department: 'Mobile Development',
-    designation: 'Flutter Developer',
-    image: avatar,
-  },
-  {
-    id: 10,
-    name: 'sameh',
-    department: 'Mobile Development',
-    designation: 'Flutter Developer',
-    image: avatar,
+    name: 'Mobile',
+    description: 'Develops and maintains mobile applications using modern cross-platform technologies.',
+    employeesCount: 5,
   },
 ];
 
-export default employeesData;
+export default departmentsData;

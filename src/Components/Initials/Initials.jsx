@@ -1,15 +1,17 @@
-import React from 'react'
+import React from 'react';
 
-export default function Initials({name=''}) {
-    let initials=name.split(' ').map(n=>n[0]).join('').toUpperCase()
+export default function Initials({ name = '' }) {
+  let initials = name
+    .split(' ')
+    .map((n) => n[0])
+    .join('')
+    .toUpperCase();
 
   return (
-       <div className="rounded-full h-8 w-8 md:w-12 md:h-12 bg-green flex items-center justify-center">
-                  <p className="text-white font-bold text-shadow-md md:text-lg">
-                    {initials}
-               
-                  </p>
-                </div>
-  )
+    <div className="bg-green flex h-8 w-8 items-center justify-center rounded-full md:h-12 md:w-12">
+      <p className="font-bold text-white text-shadow-md md:text-lg">
+        {initials}
+      </p>
+    </div>
+  );
 }
-   

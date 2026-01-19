@@ -8,7 +8,7 @@ const attendanceData = [
     type: 'Office',
     checkIn: '9:27 AM',
     status: 'On Time',
-    image:avatar
+    image: avatar,
   },
   {
     id: 2,
@@ -17,7 +17,7 @@ const attendanceData = [
     type: 'Remote',
     checkIn: '9:45 AM',
     status: 'Late',
-    image:avatar
+    image: avatar,
   },
   {
     id: 3,
@@ -26,7 +26,7 @@ const attendanceData = [
     type: 'Office',
     checkIn: '9:15 AM',
     status: 'On Time',
-    image:avatar
+    image: avatar,
   },
 ];
 

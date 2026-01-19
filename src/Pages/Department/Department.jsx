@@ -1,173 +1,28 @@
 import React from 'react'
 import employeesData from './rows'
+import { Link } from 'react-router-dom'
+import departmentsData from './rows'
 
 export default function Department() {
   return (
     <>
-    <div className='grid grid-cols-2 mx-6 gap-16'>
-      <div className='col-span-1 border border-gray-200 '>
-
-      <div className='flex justify-between'>
-        <div className='flex flex-col items-center'>
-          <h2 className='font-bold'> Design Department </h2>
-          <p className='text-gray-400'> 20 Members</p>
+    <div className='grid grid-cols-2 gap-2 mx-6 ' >
+  {departmentsData.map(dep=>(
+      
+      <div className='col-span-1 text-center border border-gray-400'>
+        <div className="flex flex-col gap-5 py-4">
+            <p className='text-4xl font-bold text-gray-600 '>{dep.name}</p>
+        <p className='text-gray-500 text-lg'>{dep.description}</p>
+        <p className=' text-gray-600 font-bold text-2xl '><i className='fa-solid fa-user-group text-green'></i>{dep.employeesCount}</p>
+        <Link to={`/department/${dep.name}`} ><i className='fa-solid fa-chevron-right text-green font-extrabold text-3xl'></i></Link>
 
         </div>
-        <a href="" className='text-green'>View All</a>
-
-        
-      </div>
-      {employeesData
-          .filter(emp => emp.department === 'Mobile Development')
-          .map((emp) => (
-            <div key={emp.id} className="flex justify-between mb-3">
-              <div className="flex items-center gap-5">
-                <div className="rounded-full w-12 h-12 bg-green flex items-center justify-center">
-                  <p className="text-white font-bold text-lg">
-                    {emp.name
-                      .split(' ')
-                      .map(n => n[0])
-                      .join('')
-                      .toUpperCase()}
-                  </p>
-                </div>
-                <h2>{emp.name}</h2>
-              </div>
-              <a href="#">
-                <i className="fa-solid fa-arrow-right"></i>
-              </a>
-            </div>
-          ))}
-
-
-
       
 
-
       </div>
-      <div className='col-span-1 border border-gray-200 '>
-
-      <div className='flex justify-between'>
-        <div className='flex flex-col items-center'>
-          <h2 className='font-bold'> Design Department </h2>
-          <p className='text-gray-400'> 20 Members</p>
-
-        </div>
-        <a href="" className='text-green'>View All</a>
-
-        
-      </div>
-      {employeesData
-          .filter(emp => emp.department === 'Mobile Development')
-          .map((emp) => (
-            <div key={emp.id} className="flex justify-between mb-3">
-              <div className="flex items-center gap-5">
-                <div className="rounded-full w-12 h-12 bg-green flex items-center justify-center">
-                  <p className="text-white font-bold text-lg">
-                    {emp.name
-                      .split(' ')
-                      .map(n => n[0])
-                      .join('')
-                      .toUpperCase()}
-                  </p>
-                </div>
-                <h2>{emp.name}</h2>
-              </div>
-              <a href="#">
-                <i className="fa-solid fa-arrow-right"></i>
-              </a>
-            </div>
-          ))}
-
-
-
-      
-
-
-      </div>
-      <div className='col-span-1 border border-gray-200 '>
-
-      <div className='flex justify-between'>
-        <div className='flex flex-col items-center'>
-          <h2 className='font-bold'> Design Department </h2>
-          <p className='text-gray-400'> 20 Members</p>
-
-        </div>
-        <a href="" className='text-green'>View All</a>
-
-        
-      </div>
-      {employeesData
-          .filter(emp => emp.department === 'Mobile Development')
-          .map((emp) => (
-            <div key={emp.id} className="flex justify-between mb-3">
-              <div className="flex items-center gap-5">
-                <div className="rounded-full w-12 h-12 bg-green flex items-center justify-center">
-                  <p className="text-white font-bold text-lg">
-                    {emp.name
-                      .split(' ')
-                      .map(n => n[0])
-                      .join('')
-                      .toUpperCase()}
-                  </p>
-                </div>
-                <h2>{emp.name}</h2>
-              </div>
-              <a href="#">
-                <i className="fa-solid fa-arrow-right"></i>
-              </a>
-            </div>
-          ))}
-
-
-
-      
-
-
-      </div>
-      <div className='col-span-1 border border-gray-200 '>
-
-      <div className='flex justify-between'>
-        <div className='flex flex-col items-center'>
-          <h2 className='font-bold'> Design Department </h2>
-          <p className='text-gray-400'> 20 Members</p>
-
-        </div>
-        <a href="" className='text-green'>View All</a>
-
-        
-      </div>
-      {employeesData
-          .filter(emp => emp.department === 'Mobile Development')
-          .map((emp) => (
-            <div key={emp.id} className="flex justify-between mb-3">
-              <div className="flex items-center gap-5">
-                <div className="rounded-full w-12 h-12 bg-green flex items-center justify-center">
-                  <p className="text-white font-bold text-lg">
-                    {emp.name
-                      .split(' ')
-                      .map(n => n[0])
-                      .join('')
-                      .toUpperCase()}
-                  </p>
-                </div>
-                <h2>{emp.name}</h2>
-              </div>
-              <a href="#">
-                <i className="fa-solid fa-arrow-right"></i>
-              </a>
-            </div>
-          ))}
-
-
-
-      
-
-
-      </div>
-     
-      
-    </div>
+    
+  ))}
+  </div>
     </>
   )
 }

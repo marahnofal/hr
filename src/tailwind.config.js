@@ -10,6 +10,9 @@ module.exports = {
     extend: {
       colors: {
         brandGreen: "#89C43D",
+        bg: 'rgb(var(--bg))',
+        text: 'rgb(var(--text))',
+        surface: 'rgb(var(--surface))',
       },
     },
   },

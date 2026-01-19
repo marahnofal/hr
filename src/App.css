@@ -1,15 +1,16 @@
-@import "tailwindcss";
-.bg-green{
-    background-color: #89C43D;
+
+
+.bg-green {
+  background-color: #89c43d;
 }
-.border-green{
-    border:solid 1px #89C43D;
+.border-green {
+  border: solid 1px #89c43d;
 }
-.text-green{
-    color: #89C43D;
+.text-green {
+  color: #89c43d;
 }
-.secondary-bg{
-  background-color: #30BE821A;
+.secondary-bg {
+  background-color: #30be821a;
 }
 @layer utilities {
   .no-scrollbar::-webkit-scrollbar {
@@ -20,10 +21,13 @@
     scrollbar-width: none;
   }
 }
-.icon-color{
-  color:#30BE82
+.icon-color {
+  color: #30be82;
 }
-.sidebar{
-  background:#A2A1A80D;
+.sidebar {
+  background: #a2a1a80d;
 }
-
+option {
+  color: #111827 !important;
+  background-color: white !important;
+}

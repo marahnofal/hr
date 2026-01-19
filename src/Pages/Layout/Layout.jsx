@@ -1,34 +1,23 @@
-import React from 'react'
-import Sidebar from '../../Components/Sidebar/Sidebar'
-import Navbar from '../../Components/Navbar/Navbar'
-import Admin from '../Admin/Admin'
-import AllEmployees from '../AllEmployees/AllEmployees'
-import { Outlet } from 'react-router-dom'
-
+import { Outlet } from 'react-router-dom';
+import Navbar from '../../Components/Navbar/Navbar';
+import Sidebar from '../../Components/Sidebar/Sidebar';
+import { useAuth } from '../../context/ThemeContext/AuthContext';
 
 export default function Layout() {
+  const {user}=useAuth();
   return (
     <>
-    <div className=' grid grid-cols-6'>
+      <div className="flex min-h-screen w-full gap-7 lg:gap-9">
+        {user&&  <aside className="me-5 md:w-50">
+          <Sidebar />
+        </aside>}
 
-      
-    </div>
-   <div className='h-full flex w-full gap-7 lg:gap-9  '>
-    <aside className='md:w-50  me-5'>
-        <Sidebar/>
-    </aside>
-    <div className='flex flex-col w-full'>
-        <Navbar/>
-        
-        <Outlet/>
-        
-        
+        <div className="flex w-full flex-col">
+          <Navbar />
 
-
-    </div>
-   </div>
-    
-
+          <Outlet />
+        </div>
+      </div>
     </>
-  )
+  );
 }

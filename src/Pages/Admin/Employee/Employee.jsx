@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function NameColumn() {
+export default function Employee() {
   return (
     <>
     
