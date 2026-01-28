@@ -7,7 +7,7 @@ export default function Otp() {
      <div className='flex flex-col items-center justify-center w-full h-screen '>
            <div  className='flex flex-col   w-[445px] h-[440px] px-5 gap-5'>
             
-            <a href="" className='font-bold'><i className='fa-solid fa-angle-left'></i>Back </a>
+            <Link to={'/login/forgetpassword'} className='font-bold'><i className='fa-solid fa-angle-left'></i>Back </Link>
             
           <div>
               <h2 className='font-bold  text-5xl'>Enter OTP</h2>

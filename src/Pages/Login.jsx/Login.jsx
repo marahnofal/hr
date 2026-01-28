@@ -7,8 +7,10 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { loginRequest } from '../../Services/auth';
 import { useAuth } from '../../context/ThemeContext/AuthContext';
+import toast from 'react-hot-toast';
 
 export default function Login() {
+  const theme=localStorage.getItem('theme');
   const {login} = useAuth();
   const navigate = useNavigate();
   const [serverError, setServerError] = useState('');
@@ -38,6 +40,17 @@ export default function Login() {
       navigate('/admin');
     } catch (err) {
       setServerError(err.message);
+      
+      
+      theme==='dark'?toast.error(err.message,
+  {
+    style: {
+      borderRadius: '10px',
+      background: '#333',
+      color: '#fff',
+    },
+  }
+):toast.error(err.message);
     }
   };
 

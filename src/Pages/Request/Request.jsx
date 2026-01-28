@@ -1,66 +1,97 @@
-import { useFormik } from 'formik'
-import React from 'react'
-import * as Yup from   'yup'
+import { useFormik } from 'formik';
+import React from 'react';
+import DatePicker from 'react-datepicker';
+import * as Yup from 'yup';
+import 'react-datepicker/dist/react-datepicker.css';
+import Select from 'react-select';
 
 export default function Request() {
-    let today=new Date()
-    today.setHours(0,0,0,0)
-    let validation=Yup.object().shape({
-        Type:Yup.string().required("Required"),
-        FromDate:Yup.date().required('Required').min(today,'invalid past dates'),
-        ToDate:Yup.date().required('Required').min(Yup.ref('FromDate'),"Does not match with the starting Date"),
-        Reason:Yup.string().required('Required'),
-    })
-    let formik=useFormik({
-        initialValues:{
-            Type:'',
-            FromDate:'',
-            EndDate:'',
-            Reason:'',
-            
-
-            
-        },
-        onSubmit:(e)=>(
-            console.log(e)
-            
-        ),
-        validationSchema:validation
-            
-
-        
-        
-
+  let today = new Date();
+  today.setHours(0, 0, 0, 0);
+  let validation = Yup.object().shape({
+    Type: Yup.string().required('Required'),
+    FromDate: Yup.date().required('Required').min(today, 'invalid past dates'),
+    ToDate: Yup.date()
+      .required('Required')
+      .min(Yup.ref('FromDate'), 'Does not match with the starting Date'),
+    Reason: Yup.string().required('Required'),
+  });
+  let formik = useFormik({
+    initialValues: {
+      Type: '',
+      FromDate: '',
+      ToDate: '',
+      Reason: '',
     },
-    
-)
+    onSubmit: (e) => console.log(e),
+    validationSchema: validation,
+  });
+  const options = [
+    { value: '', label: 'Select Leave Type' },
+    { value: 'planned', label: 'Planned Vacation' },
+    { value: 'sick', label: 'Sick Leave' },
+    { value: 'emergency', label: 'Emergency' },
+  ];
   return (
-    
     <>
-    <form action="" className='mx-2'>
-<div>
-            <select name="Type" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.Type} id="" className='text-gray-900 px-2  border-2 border-gray-200 outline-0 w-full h-[56px] rounded-lg col-span-1 my-2 '>
-            <option className='text-gray-700' value="">Type</option>
-            <option className='text-gray-700' value="planned">Planned Vacation</option>
-            <option className='text-gray-700' value="sick">Sick Leave</option>
-            <option className='text-gray-700' value="emergency">Emergency</option>
-            <option className='text-gray-700' value="mariage">Mariage</option>
-        </select>
-        {formik.errors.Type&&formik.touched.Type&&<p className='text-red-500'>{formik.errors.Type}</p>}
-</div>
-<div>
-    <input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.FromDate} type="date" name="FromDate" id="" className='px-2  border-2 border-gray-200 outline-0 w-full h-[56px] rounded-lg col-span-1 my-2 ' />
-    {formik.errors.FromDate&&formik.touched.FromDate&&<p className='text-red-500'>{formik.errors.FromDate}</p>}
-</div>
-<div>
-    <input onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.ToDate} type="date" name="ToDate" id="" className='px-2  border-2 border-gray-200 outline-0 w-full h-[56px] rounded-lg col-span-1 my-2 ' />
-    {formik.errors.ToDate&&formik.touched.ToDate&&<p className='text-red-500'>{formik.errors.ToDate}</p>}
-</div>
-<textarea onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.Reason} placeholder='Reason' name="Reason" id="" className='px-2  border-2 border-gray-200 outline-0 w-full h-[100px] rounded-lg col-span-1 my-2  '></textarea>
-{formik.errors.Reason&&formik.touched.Reason&&<p className='text-red-500'>{formik.errors.Reason}</p>}
-<button type='submit' className='bg-green text-white w-16 h-8 '>Apply</button>
-    </form>
-    
+      <form onSubmit={formik.handleSubmit} action="" className="mx-2">
+        <div>
+       
+        
+          <Select
+          
+            classNamePrefix="rs"
+            name="Type"
+            options={options}
+            value={options.find((opt) => opt.value === formik.values.Type)}
+            onChange={(option) => formik.setFieldValue('Type', option.value)}
+            onBlur={() => formik.setFieldTouched('Type', true)}
+          />
+            {formik.errors.Type && formik.touched.Type && (
+            <p className="text-red-500">{formik.errors.Type}</p>
+          )}
+        </div>
+        <div className="flex items-center gap-10">
+          <DatePicker
+            selected={formik.values.FromDate}
+            onChange={(date) => formik.setFieldValue('FromDate', date)}
+            onBlur={() => formik.setFieldTouched('FromDate', true)}
+            placeholderText="Starting Date"
+            minDate={today}
+            className="border-default col-span-1 my-2 h-[56px] w-full rounded-lg border-2 px-2 outline-0"
+          />
+          {formik.errors.FromDate && formik.touched.FromDate && (
+            <p className="text-red-500">{formik.errors.FromDate}</p>
+          )}
+          <DatePicker
+            selected={formik.values.ToDate}
+            onChange={(date) => formik.setFieldValue('ToDate', date)}
+            onBlur={() => formik.setFieldTouched('ToDate', true)}
+            placeholderText="Ending Date"
+            minDate={today}
+            className="border-default col-span-1 my-2 h-[56px] w-full rounded-lg border-2 px-2 outline-0"
+          />
+          {formik.errors.ToDate && formik.touched.ToDate && (
+            <p className="text-red-500">{formik.errors.ToDate}</p>
+          )}
+        </div>
+
+        <textarea
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.Reason}
+          placeholder="Reason"
+          name="Reason"
+          id=""
+          className="border-default col-span-1 my-2 h-[100px] w-full rounded-lg border-2 px-2 outline-0"
+        ></textarea>
+        {formik.errors.Reason && formik.touched.Reason && (
+          <p className="text-red-500">{formik.errors.Reason}</p>
+        )}
+        <button type="submit" className="bg-green h-8 w-16 text-white">
+          Apply
+        </button>
+      </form>
     </>
-  )
+  );
 }

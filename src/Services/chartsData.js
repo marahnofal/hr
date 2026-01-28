@@ -75,7 +75,7 @@ export async function getMonthlyAttendanceChart(user) {
   let scoped = attendance;
 
   if (user?.role === 'manager') {
-    scoped = scoped.filter((a) => a.department === user?.department);
+    scoped = scoped.filter((a) => a.department === user?.department_id);
   }
 
   if (user?.role === 'employee') {

@@ -23,7 +23,10 @@ export function AuthProvider({children}){
     }
     
   const logout = () => {
-    localStorage.clear();
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    localStorage.removeItem('role');
+    localStorage.removeItem('department');
     setUser(null);
     user===null&&Navigate('/login');
     

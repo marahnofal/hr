@@ -25,7 +25,7 @@ export default function () {
           <input
             {...register('departmentName', { required: 'Name is Required' })}
             type="text"
-            className="h-[56px] w-full border-2 border-gray-200 ps-2 outline-green-600"
+            className="h-[56px] w-full border-2  ps-2 outline-green-600"
             placeholder="Department Name "
           />
           {errors.departmentName && (

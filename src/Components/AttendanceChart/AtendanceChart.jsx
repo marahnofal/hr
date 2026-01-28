@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../context/ThemeContext/AuthContext';
-import { getMonthlyAttendanceChart, getWeeklyChartData } from '../../Services/chartsData';
+import {
+  getMonthlyAttendanceChart,
+  getWeeklyChartData,
+} from '../../Services/chartsData';
 import MonthlyPieChart from './MonthlyBarChart';
 import WeeklyBarChart from './WeeklyBarChart';
-
-
 
 export default function AttendanceChart() {
   const { user } = useAuth();
@@ -38,11 +39,11 @@ export default function AttendanceChart() {
 
   return (
     <>
-      <div className="flex w-full justify-between mb-4">
+      <div className="mb-4 flex w-full justify-between">
         <h2>Attendance Overview</h2>
 
         <select
-          className="border rounded px-3 py-1"
+          className="rounded border px-3 py-1"
           value={range}
           onChange={(e) => setRange(e.target.value)}
         >
@@ -50,9 +51,26 @@ export default function AttendanceChart() {
           <option value="month">This Month</option>
         </select>
       </div>
-
-      {range === 'week' && <WeeklyBarChart data={weeklyData} />}
-      {range === 'month' && <MonthlyPieChart data={monthlyData} />}
+      <div className="flex items-center gap-5">
+        {range === 'week' && <WeeklyBarChart data={weeklyData} />}
+        {range === 'month' && <MonthlyPieChart data={monthlyData} />}
+        {range === 'month' && (
+          <div className="flex flex-col">
+            <span className="text-heading me-3 flex items-center text-sm font-medium">
+              <span className="me-1.5 flex h-[15px] w-[15px] shrink-0 bg-green-500 text-green-500" />
+              <p className="text-green-500">Present</p>
+            </span>
+            <span className="text-heading me-3 flex items-center text-sm font-medium">
+              <span className="me-1.5 flex h-[15px] w-[15px] shrink-0 bg-amber-300 text-amber-300" />
+              <p className="text-amber-400">Late</p>
+            </span>
+            <span className="text-heading me-3 flex items-center text-sm font-medium">
+              <span className="me-1.5 flex h-[15px] w-[15px] shrink-0 bg-red-500" />
+              <p className="text-red-500">Leave</p>
+            </span>
+          </div>
+        )}
+      </div>
     </>
   );
 }

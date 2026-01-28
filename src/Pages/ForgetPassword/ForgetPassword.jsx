@@ -24,9 +24,9 @@ export default function ForgetPassword() {
     <>
       <div className="flex h-screen w-full flex-col items-center justify-center">
         <div className="flex h-[440px] w-[445px] flex-col gap-5 px-5">
-          <a href="" className="font-bold">
+          <Link to={'/login'} className="font-bold">
             <i className="fa-solid fa-angle-left"></i>Back{' '}
-          </a>
+          </Link>
 
           <div>
             <h2 className="text-xl font-bold">Forget Password</h2>

@@ -49,7 +49,7 @@ export default function Register() {
             name="UserName"
             type="text"
             placeholder="Full Name"
-            className="ps-2 border-2 border-gray-200 outline-0 w-full h-[56px] rounded-lg col-span-1 my-2 "
+            className="ps-2  outline-0 w-full h-[56px] rounded-lg col-span-1 my-2 "
           />
           {formik.errors.UserName && formik.touched.UserName && (
             <p className="text-red-500">{formik.errors.UserName}</p>
@@ -63,7 +63,7 @@ export default function Register() {
             name="Address"
             type="text"
             placeholder="Address"
-            className="ps-2 border-2 border-gray-200 outline-0 w-full h-[56px] rounded-lg col-span-1 my-2"
+            className="ps-2  outline-0 w-full h-[56px] rounded-lg col-span-1 my-2"
           />
 
           {formik.errors.Address && formik.touched.Address && (
@@ -78,7 +78,7 @@ export default function Register() {
             name="Password"
             type="password"
             placeholder="Passwprd"
-            className="ps-2 border-2 border-gray-200 outline-0 w-full h-[56px] rounded-lg col-span-1 my-2"
+            className="ps-20 outline-0 w-full h-[56px] rounded-lg col-span-1 my-2"
           />
           {formik.errors.Password && formik.touched.Password && (
             <p className="text-red-500">{formik.errors.Password}</p>
@@ -92,7 +92,7 @@ export default function Register() {
             name="ConfirmPassword"
             type="password"
             placeholder="Confirm Password"
-            className="ps-2 border-2 border-gray-200 outline-0 w-full h-[56px] rounded-lg col-span-1 my-2"
+            className="ps-2 border-2 outline-0 w-full h-[56px] rounded-lg col-span-1 my-2"
           />
           {formik.errors.ConfirmPassword && formik.touched.ConfirmPassword && (
             <p className="text-red-500">{formik.errors.ConfirmPassword}</p>
@@ -106,7 +106,7 @@ export default function Register() {
             name="Phone"
             type="tel"
             placeholder="Phone Number"
-            className="ps-2 border-2 border-gray-200 outline-0 w-full h-[56px] rounded-lg col-span-1"
+            className="ps-2  outline-0 w-full h-[56px] rounded-lg col-span-1"
           />
           {formik.errors.Phone && (
             <p className="text-red-500">{formik.errors.Phone}</p>
@@ -120,7 +120,7 @@ export default function Register() {
             name="Gender"
             id=""
             placeholder="Gender"
-            className="ps-2 border-2 border-gray-200 outline-0 w-full h-[56px] rounded-lg col-span-1 my-2 "
+            className="ps-2 outline-0 w-full h-[56px] rounded-lg col-span-1 my-2 "
           >
             <option value="">Gender</option>
             <option value="male">Male</option>

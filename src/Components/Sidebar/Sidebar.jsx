@@ -7,7 +7,10 @@ import { RiUserSettingsLine, RiUserCommunityLine } from 'react-icons/ri';
 import { FaRegCalendarCheck } from 'react-icons/fa';
 import { PiNotepad } from 'react-icons/pi';
 import { SlCalender } from 'react-icons/sl';
+import { CiCircleCheck } from 'react-icons/ci';
+import { CiSquareQuestion } from 'react-icons/ci';
 
+import { IoMdPeople } from "react-icons/io";
 // Theme hook ✅
 import { useTheme } from '../../context/ThemeContext/ThemeContext.jsx';
 
@@ -16,10 +19,10 @@ import { darkmoon, sun, logo, logoIcon, lightLogo } from '../../assets/data';
 import { useAuth } from '../../context/ThemeContext/AuthContext.jsx';
 
 export default function Sidebar() {
+  const { user } = useAuth();
   const { logout } = useAuth();
   const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
-  
 
   const sidebar = [
     {
@@ -27,55 +30,79 @@ export default function Sidebar() {
       label: 'Dashboard',
       icon: MdOutlineDashboard,
       path: '/',
-      
+      role: ['admin', 'manager', 'employee'],
     },
     {
       id: 1,
       label: 'Employees',
       icon: MdOutlinePeople,
       path: '/allemployees',
+      role: ['manager', 'admin'],
     },
     {
       id: 2,
       label: 'Departments',
       icon: RiUserCommunityLine,
       path: '/department',
+      role: ['admin'],
     },
     {
       id: 3,
       label: 'Attendance',
       icon: FaRegCalendarCheck,
       path: '/attendance',
+      role: ['manager', 'admin'],
     },
     {
       id: 7,
       label: 'Leaves',
       icon: PiNotepad,
       path: '/requestmanagement',
+      role: ['manager', 'admin'],
     },
     {
       id: 8,
-      label: 'Holidays',
-      icon: SlCalender,
-      path: '/holidays',
+      label: 'Candidates',
+      icon: IoMdPeople,
+      path: '/candidates',
+      role: ['admin', 'employee', 'manager'],
     },
     {
       id: 9,
       label: 'Roles',
       icon: RiUserSettingsLine,
-      path: '/roles',
+      path: '/role',
+      role: ['admin', 'employee', 'manager'],
     },
     {
       id: 10,
       label: 'Settings',
       icon: CiSettings,
-      path: '/settings',
+      path: '/dashboard',
+      role: ['admin', 'employee', 'manager'],
+    },
+    {
+      id: 11,
+      label: 'checkin',
+      icon: CiCircleCheck,
+      path: '/dashboard',
+      role: ['manager', 'employee'],
+    },
+    {
+      id: 12,
+      label: 'request',
+      icon: CiSquareQuestion,
+      path: '/request',
+      role: ['manager', 'employee'],
     },
   ];
   const logoutButton = () => {
     logout();
     navigate('/login');
   };
+  const filteredSidebar = sidebar.filter((item) =>
+    item.role.includes(user?.role)
+  );
 
   return (
     <nav className="fixed h-full w-[65px] shadow-lg md:w-60">
@@ -101,7 +128,7 @@ export default function Sidebar() {
 
         {/* Links */}
         <div className="space-y-4">
-          {sidebar.map((item) => {
+          {filteredSidebar.map((item) => {
             const Icon = item.icon;
             return (
               <Link

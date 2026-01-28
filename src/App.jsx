@@ -18,6 +18,9 @@ import ResetPasword from './Pages/ResetPassword/ResetPasword';
 import CreateDepartment from './Pages/CreateDepartment/CreateDepartment';
 import DepartmentEmployees from './Pages/DepartmentEmployees/DepartmentEmployees';
 import ProtectedRoute from './routes/ProtectedRoute';
+import { Toaster } from 'react-hot-toast';
+import JobVacancy from './Components/JobVacancy/JobVacancy';
+import Candidates from './Pages/Candidates/Candidates';
 
 function App() {
   let route = createBrowserRouter([
@@ -44,7 +47,7 @@ function App() {
         {
           path: '/allemployees',
           element: (
-            <ProtectedRoute allowedRole={['admin','manager']}>
+            <ProtectedRoute allowedRole={['admin', 'manager']}>
               <AllEmployees />
             </ProtectedRoute>
           ),
@@ -52,7 +55,7 @@ function App() {
         {
           path: '/allemployees/addemployee',
           element: (
-            <ProtectedRoute allowedRole={['admin','manager']}>
+            <ProtectedRoute allowedRole={['admin', 'manager']}>
               <AddEmployee />
             </ProtectedRoute>
           ),
@@ -60,8 +63,16 @@ function App() {
         {
           path: '/department',
           element: (
-            <ProtectedRoute>
+            <ProtectedRoute allowedRole={['admin']}>
               <Department />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: '/role',
+          element: (
+            <ProtectedRoute allowedRole={['admin','employee','manager']}>
+              <JobVacancy />
             </ProtectedRoute>
           ),
         },
@@ -100,7 +111,7 @@ function App() {
         {
           path: '/requestmanagement',
           element: (
-            <ProtectedRoute>
+            <ProtectedRoute allowedRole={['admin', 'manager']}>
               <RequestManagement />
             </ProtectedRoute>
           ),
@@ -116,8 +127,16 @@ function App() {
         {
           path: '/department/:department',
           element: (
-            <ProtectedRoute>
+            <ProtectedRoute allowedRole={['admin']}>
               <DepartmentEmployees />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: '/candidates',
+          element: (
+            <ProtectedRoute allowedRole={['employee','admin','manager']}>
+              <Candidates />
             </ProtectedRoute>
           ),
         },
@@ -127,6 +146,7 @@ function App() {
 
   return (
     <>
+      <Toaster />
       <RouterProvider router={route}></RouterProvider>
     </>
   );

@@ -1,18 +1,90 @@
 @import 'tailwindcss';
 @layer base {
   :root {
-    --bg: 248 250 252;   /* light background */
-    --text: 15 23 42;   /* light text */
+    --bg: 248 250 252; /* light background */
+    --text: 15 23 42; /* light text */
     --surface: 255 255 255;
+    --border-rs: 162 161 168;
   }
 
   .dark {
-    --bg: 2 6 23;       /* dark background */
+    --bg: 2 6 23; /* dark background */
     --text: 229 231 235;
     --surface: 15 23 42;
+    --border-rs:185 184 184;
+  }
+
+  .rs__control {
+    background-color: rgb(var(--bg)) !important;
+    border:  2px solid rgb(var(--border-rs)/0.2 ) !important;
+    box-shadow: none !important;
+    min-height: 56px !important;
+  }
+
+  .rs__single-value {
+    color: rgb(var(--text)) !important;
+  }
+
+
+
+  .rs__menu {
+    background-color: rgb(var(--surface)) !important;
+    border-radius: 8px !important;
+    box-shadow: none;
+    overflow: hidden;
+  }
+
+  .rs__option {
+    color: rgb(var(--text)) !important;
+    cursor: pointer;
+  }
+
+  .rs__option--is-focused {
+    background-color: rgb(var(--border-rs)) !important;
+
+    box-shadow: none;
+  }
+
+  .rs__option--is-selected {
+    background-color: #89c43d !important;
+    color: black !important;
   }
 
   body {
     @apply bg-[rgb(var(--bg))] text-[rgb(var(--text))];
+  }
+
+  .dark .react-datepicker {
+    background-color: rgb(var(--bg)) !important;
+    border: 1px solid #334155 !important;
+    color: #a2a1a81a !important;
+  }
+
+  .dark .react-datepicker__header {
+    background-color: rgb(var(--bg)) !important;
+    border-bottom: 1px solid #334155 !important;
+  }
+
+  .dark .react-datepicker__current-month,
+  .dark .react-datepicker-time__header,
+  .dark .react-datepicker__day-name {
+    color: #fff !important;
+  }
+
+  .dark .react-datepicker__day {
+    color: #e5e7eb !important;
+  }
+
+  .dark .react-datepicker__day--selected,
+  .dark .react-datepicker__day--keyboard-selected {
+    background-color: #89c43d !important;
+    color: #000 !important;
+  }
+
+  .dark .react-datepicker__navigation-icon::before {
+    border-color: #fff !important;
+  }
+  .border-default {
+    border: rgba(162, 161, 168, 0.2) solid 2px;
   }
 }

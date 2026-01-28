@@ -7,7 +7,7 @@ export default function Navbar() {
   const { user } = useAuth();
   const nav_content = {
     '/': {
-      header: 'Welcome Robert 👋🏻',
+      header: `Welcome ${user?.name} 👋🏻`,
       title: 'Good Morning',
     },
     '/admin': {
@@ -38,13 +38,22 @@ export default function Navbar() {
       header: 'Leave Requests',
       title: 'Leave Requests Management ',
     },
+    '/request': {
+      header: 'Leave Requests',
+      title: 'Create New Request ',
+    },
     '/department': {
       header: 'Departments',
       title: 'All Departments',
     },
+    '/candidates': {
+      header: 'Candidates',
+      title: 'Inner Recommendations ',
+    },
   };
   const { pathname } = useLocation();
   const page = nav_content[pathname] || { header: 'page', title: '' };
+
   return (
     <>
       <nav className="align-center mx-auto flex h-25 w-full justify-between rounded-lg p-[30px]">
@@ -75,7 +84,7 @@ export default function Navbar() {
               </div>
             </form>
             <i className="fa-regular fa-bell text-2xl"></i>
-            <div className="flex gap-5 items-center justify-center">
+            <div className="flex items-center justify-center gap-5">
               <div className="h-10 w-10">
                 <Initials name={user?.name} />
               </div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useLive } from '../../hooks/useLive'
+import { useLive } from '../../hooks/useLive.js'
 import { logo } from '../../assets/data';
 
 export default function Checkin() {
@@ -64,7 +64,7 @@ function duration(){
     <>
     <div className=' flex justify-center items-center  h-screen '>
       
-      <div className=' bg-gray-100 text-center flex flex-col gap-5 p-12 rounded-2xl shadow-2xl items-center'>
+      <div className='text-center flex flex-col gap-5 p-12 rounded-2xl shadow-2xl items-center'>
         <img src={logo} className='w-24' alt="" />
         
         <p className='text-4xl font-light'>Welcome john</p>

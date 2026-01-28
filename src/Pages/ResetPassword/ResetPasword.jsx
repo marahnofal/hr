@@ -1,5 +1,6 @@
 import { Formik, useFormik } from 'formik'
 import React from 'react'
+import { Link } from 'react-router-dom'
 import * as Yup from 'yup'
 
 export default function ResetPasword() {
@@ -24,7 +25,7 @@ export default function ResetPasword() {
       <>
         <div className='flex flex-col items-center justify-center w-full h-screen '>
            <div  className='flex flex-col   w-[445px] h-[440px] px-5 gap-5'>
-             <a href="" className='font-bold'><i className='fa-solid fa-angle-left'></i>Back </a>
+             <Link to={'/admin'} className='font-bold'><i className='fa-solid fa-angle-left'></i>Back </Link>
             
           <div>
               <h2 className='font-bold  text-xl'>Reset Password</h2>

@@ -27,13 +27,13 @@ export default function CardEdit({ data, update, remove }) {
           <div
             id="employeeData"
             tabIndex={-1}
-            className="fixed top-0 right-0 left-0 z-50 flex h-[calc(100%-1rem)] max-h-full w-full items-center justify-center overflow-x-hidden overflow-y-auto backdrop-blur-sm md:inset-0"
+            className="fixed top-0 right-0 left-0 z-50 flex h-[calc(100%-1rem)] max-h-full w-full items-center justify-center overflow-x-hidden overflow-y-auto backdrop-blur-sm md:inset-0 "
           >
-            <div className="border-green relative max-h-full w-full max-w-md rounded-md p-4">
+            <div className=" relative max-h-full w-full max-w-md rounded-md p-4 " >
               {/* Modal content */}
               <div className="bg-neutral-primary-soft border-green rounded-base relative p-4 shadow-sm md:p-6">
                 {/* Modal header */}
-                <div className="border-default flex items-center justify-between border-b pb-4 md:pb-5">
+                <div className=" flex items-center justify-between border-b pb-4 md:pb-5">
                   <h3 className="text-heading text-lg font-medium text-green-700">
                     {emp.name}
                   </h3>

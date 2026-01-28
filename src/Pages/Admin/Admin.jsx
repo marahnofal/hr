@@ -5,36 +5,42 @@ import AttendanceChart from '../../Components/AttendanceChart/AtendanceChart';
 import { tasks } from '../../assets/data';
 import Table from '../../Components/Table/Table';
 
-import attendanceData from './rows';
+import { useEffect, useEffectEvent, useState } from 'react';
+
+import api from '../../Services/api';
+import Initials from '../../Components/Initials/Initials';
+import { useAuth } from '../../context/ThemeContext/AuthContext';
 
 export default function Admin() {
+  const [showall, setShowAll] = useState(false);
+  const { user } = useAuth();
+  const [todayAttendance, setToayAttendance] = useState([]);
+  const displayedRows = showall ? todayAttendance : todayAttendance.slice(0, 5);
   const columns = [
     {
       header: 'Name',
-      accessorKey: 'name',
+      accessorKey: 'employee_name',
       cell: (info) => (
         <div className="flex items-center gap-2">
-          <img
-            src={info.row.original.image}
-            alt={info.getValue()}
-            className="h-[36px] w-[36px] rounded-full"
-          />
+          <Initials name={info.getValue()} />
           <span>{info.getValue()}</span>
         </div>
       ),
     },
-    { header: 'Designation', accessorKey: 'designation' },
-    { header: 'Type', accessorKey: 'type' },
-    { header: 'Check In Time', accessorKey: 'checkIn' },
+    { header: 'Department', accessorKey: 'department_id' },
+
+    { header: 'Check In Time', accessorKey: 'check_in' },
     {
       header: 'Status',
       accessorKey: 'status',
       cell: (info) => (
         <span
           className={`rounded-full px-2 py-1 text-xs font-medium ${
-            info.getValue() === 'Late'
+            info.getValue() === 'late'
               ? 'bg-red-100 text-red-500'
-              : 'bg-green-100 text-green-500'
+              : info.getValue() === 'leave'
+                ? 'bg-amber-100 text-amber-500'
+                : 'bg-green-100 text-green-500'
           }`}
         >
           {info.getValue()}
@@ -42,6 +48,27 @@ export default function Admin() {
       ),
     },
   ];
+  function getTodayDate() {
+    return new Date().toISOString().split('T')[0];
+  }
+  function filterDataByDate(data, today) {
+    return data.filter((day) => day.date === today);
+  }
+  useEffect(() => {
+    async function fetchToday() {
+      const res = await api.get('/attendance');
+      let data = res?.data;
+
+      const today = getTodayDate();
+      if (user?.role === 'manager') {
+        data = data?.filter((emp) => emp.department_id == user.department_id);
+        setToayAttendance(filterDataByDate(data, today));
+      }
+
+      setToayAttendance(filterDataByDate(data, today));
+    }
+    fetchToday();
+  }, [user]);
 
   return (
     <>
@@ -82,10 +109,20 @@ export default function Admin() {
 
           <div className="col-span-3 md:col-span-2">
             <AttendanceChart />
-            <Table column={columns} rows={attendanceData} />
+            {user?.role !== 'employee' && (
+              <div>
+                <Table column={columns} rows={displayedRows} />
+                <button
+                  onClick={() => setShowAll(!showall)}
+                  className="rounded-lg px-4 py-2 text-sm font-medium text-green-500 hover:cursor-pointer"
+                >
+                  {showall ? 'See Less' : 'See More'}
+                </button>
+              </div>
+            )}
           </div>
         </div>
-        <div className="col-span-3 md:col-span-1">
+        <div className="fixed end-0 top-20 col-span-3 md:col-span-1">
           <Calender tasks={tasks} />
         </div>
       </div>
