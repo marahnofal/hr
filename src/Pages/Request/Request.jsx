@@ -4,8 +4,14 @@ import DatePicker from 'react-datepicker';
 import * as Yup from 'yup';
 import 'react-datepicker/dist/react-datepicker.css';
 import Select from 'react-select';
+import { useAuth } from '../../context/ThemeContext/AuthContext';
+
+import toast from 'react-hot-toast';
+import api from './../../Services/api';
+import RequestManagement from '../RequestManagement/RequestManagement';
 
 export default function Request() {
+  const { user } = useAuth();
   let today = new Date();
   today.setHours(0, 0, 0, 0);
   let validation = Yup.object().shape({
@@ -19,11 +25,28 @@ export default function Request() {
   let formik = useFormik({
     initialValues: {
       Type: '',
-      FromDate: '',
-      ToDate: '',
+      FromDate: null,
+      ToDate: null,
       Reason: '',
     },
-    onSubmit: (e) => console.log(e),
+    onSubmit: async (values) => {
+      try {
+        await api.post('/leaves', {
+          name: user?.name,
+          userId: user?.id,
+          department: user?.department_id,
+          type: values.Type,
+          from: values.FromDate,
+          to: values.ToDate,
+          reason: values.Reason,
+          status: 'pending',
+        });
+        toast.success('submitted succesffuly');
+      } catch (err) {
+        toast.error('your leave failed to be submitted');
+        console.log(err);
+      }
+    },
     validationSchema: validation,
   });
   const options = [
@@ -36,10 +59,7 @@ export default function Request() {
     <>
       <form onSubmit={formik.handleSubmit} action="" className="mx-2">
         <div>
-       
-        
           <Select
-          
             classNamePrefix="rs"
             name="Type"
             options={options}
@@ -47,7 +67,7 @@ export default function Request() {
             onChange={(option) => formik.setFieldValue('Type', option.value)}
             onBlur={() => formik.setFieldTouched('Type', true)}
           />
-            {formik.errors.Type && formik.touched.Type && (
+          {formik.errors.Type && formik.touched.Type && (
             <p className="text-red-500">{formik.errors.Type}</p>
           )}
         </div>
@@ -92,6 +112,7 @@ export default function Request() {
           Apply
         </button>
       </form>
+      <RequestManagement />
     </>
   );
 }

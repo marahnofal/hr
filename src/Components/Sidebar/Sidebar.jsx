@@ -61,6 +61,13 @@ export default function Sidebar() {
       role: ['manager', 'admin'],
     },
     {
+      id: 13,
+      label: 'Requests',
+      icon: PiNotepad,
+      path: '/request',
+      role: ['employee'],
+    },
+    {
       id: 8,
       label: 'Candidates',
       icon: IoMdPeople,
@@ -74,13 +81,7 @@ export default function Sidebar() {
       path: '/role',
       role: ['admin', 'employee', 'manager'],
     },
-    {
-      id: 10,
-      label: 'Settings',
-      icon: CiSettings,
-      path: '/dashboard',
-      role: ['admin', 'employee', 'manager'],
-    },
+    
     {
       id: 11,
       label: 'checkin',

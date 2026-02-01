@@ -8,7 +8,7 @@ import Table from '../../Components/Table/Table';
 
 export default function Candidates() {
   const[candidateStatus,setCandidateStatus]=useState('')
-  const[editing,setEditing]=useState(false)
+  
   const status=[
     {value:'pending',label:'Pending'},
     {value:'rejected',label:'Rejected'},
@@ -25,8 +25,12 @@ export default function Candidates() {
   const columns = [
     { header: 'Job Title', accessorKey: 'title' },
     { header: 'Department', accessorKey: 'department' },
-    { header: 'Job ID', accessorKey: 'vacancyId' },
+    
     { header: 'Employee ID', accessorKey: 'userId' },
+    { header: 'Employee ID', accessorKey: 'status', cell:({row})=>{
+
+      
+    } },
     {
       header: 'Resume',
       accessorKey: 'fileData', // this is your Base64 string
@@ -35,7 +39,7 @@ export default function Candidates() {
         return (
           <button
             onClick={() => openPdf(fileData, fileType)}
-            className="rounded bg-blue-500 px-2 py-1 text-white"
+            className="rounded bg-green px-2 py-1 text-white"
           >
             View PDF
           </button>
