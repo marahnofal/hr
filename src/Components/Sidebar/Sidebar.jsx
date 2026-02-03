@@ -10,7 +10,7 @@ import { SlCalender } from 'react-icons/sl';
 import { CiCircleCheck } from 'react-icons/ci';
 import { CiSquareQuestion } from 'react-icons/ci';
 
-import { IoMdPeople } from "react-icons/io";
+import { IoMdPeople } from 'react-icons/io';
 // Theme hook ✅
 import { useTheme } from '../../context/ThemeContext/ThemeContext.jsx';
 
@@ -81,12 +81,12 @@ export default function Sidebar() {
       path: '/role',
       role: ['admin', 'employee', 'manager'],
     },
-    
+
     {
       id: 11,
       label: 'checkin',
       icon: CiCircleCheck,
-      path: '/dashboard',
+      path: '/checkin',
       role: ['manager', 'employee'],
     },
     {

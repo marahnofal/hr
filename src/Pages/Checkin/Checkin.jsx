@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { useLive } from '../../hooks/useLive.js'
 import { logo } from '../../assets/data';
+import { useAuth } from '../../context/ThemeContext/AuthContext.jsx';
 
 export default function Checkin() {
-    
+    const{user}=useAuth()
     let{time,date}=useLive()
     const [checked,setCheck]=useState('')
     const [checkIn, setCheckIn] = useState({
@@ -67,7 +68,7 @@ function duration(){
       <div className='text-center flex flex-col gap-5 p-12 rounded-2xl shadow-2xl items-center'>
         <img src={logo} className='w-24' alt="" />
         
-        <p className='text-4xl font-light'>Welcome john</p>
+        <p className='text-4xl font-light'>Welcome {user.name.split(' ')[0]}</p>
         <h1 className="text-7xl font-bold">{time}</h1>
         <p className=' text-gray-400'><i className="fa-regular fa-calendar text-green"></i>{date}</p>
         

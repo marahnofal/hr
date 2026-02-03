@@ -50,6 +50,22 @@ export default function Navbar() {
       header: 'Candidates',
       title: 'Inner Recommendations ',
     },
+    '/department/WEB': {
+      header: 'Web Department',
+      title: 'Department Details ',
+    },
+    '/department/MOBILE': {
+      header: 'Mobile Department',
+      title: 'Department Details ',
+    },
+    '/department/QUALITY': {
+      header: 'Quality Department',
+      title: 'Department Details ',
+    },
+    '/department/DESIGN': {
+      header: 'Design Department',
+      title: 'Department Details ',
+    },
   };
   const { pathname } = useLocation();
   const page = nav_content[pathname] || { header: 'page', title: '' };

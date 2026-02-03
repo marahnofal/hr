@@ -12,29 +12,25 @@ export default function RequestManagement() {
   const { user } = useAuth();
   const [filter, setFilter] = useState('All');
   const [leaveRequest, setLeaveRequest] = useState([]);
-  const [status,setStatus]=useState('')
-async function statusManagement(leaveId, newStatus) {
-  try {
-    
-    await api.patch(`/leaves/${leaveId}`, {
-      status: newStatus,
-    });
+  const [status, setStatus] = useState('');
+  async function statusManagement(leaveId, newStatus) {
+    try {
+      await api.patch(`/leaves/${leaveId}`, {
+        status: newStatus,
+      });
 
-    
-    setLeaveRequest((prev) =>
-      prev.map((leave) =>
-        leave.id === leaveId
-          ? { ...leave, status: newStatus }
-          : leave
-      )
-    );
+      setLeaveRequest((prev) =>
+        prev.map((leave) =>
+          leave.id === leaveId ? { ...leave, status: newStatus } : leave
+        )
+      );
 
-    toast.success(`Request ${newStatus.toLowerCase()}`);
-  } catch (error) {
-    console.error(error);
-    toast.error('Failed to update request status');
+      toast.success(`Request ${newStatus.toLowerCase()}`);
+    } catch (error) {
+      console.error(error);
+      toast.error('Failed to update request status');
+    }
   }
-}
   const statusOptions = [
     { value: 'All', label: 'All' },
     { value: 'pending', label: 'Pending' },
@@ -58,12 +54,9 @@ async function statusManagement(leaveId, newStatus) {
       } catch (err) {
         toast.error('failed to connect');
         console.log(err);
-        
       }
     }
     fetchData();
-    
-    
   }, [user]);
 
   const columns = [
@@ -88,7 +81,7 @@ async function statusManagement(leaveId, newStatus) {
       cell: (info) => {
         const row = info.row.original;
 
-        return row.status === 'pending'&&user.role==='manager' ? (
+        return row.status === 'pending' && user.role === 'manager' ? (
           <div className="flex gap-1">
             <button
               onClick={() => statusManagement(row.id, 'rejected')}
@@ -98,7 +91,7 @@ async function statusManagement(leaveId, newStatus) {
             </button>
             <button
               onClick={() => statusManagement(row.id, 'approved')}
-              className="bg-green  w-22 rounded-lg text-white"
+              className="bg-green w-22 rounded-lg text-white"
             >
               Accept
             </button>
@@ -106,11 +99,11 @@ async function statusManagement(leaveId, newStatus) {
         ) : (
           <p
             className={
-            row.status === 'approved'
-  ? 'text-green-600':
-  row.status==='pending'?'text-amber-500'
-  
-   : 'text-red-500'
+              row.status === 'approved'
+                ? 'text-green-600'
+                : row.status === 'pending'
+                  ? 'text-amber-500'
+                  : 'text-red-500'
             }
           >
             {row.status}
@@ -141,7 +134,6 @@ async function statusManagement(leaveId, newStatus) {
       </div>
       <div className="mx-auto w-[90%]">
         <Table column={columns} rows={filteredLeaveRequest} />
-        
       </div>
     </>
   );

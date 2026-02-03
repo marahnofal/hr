@@ -7,13 +7,15 @@ import Select from 'react-select';
 import Table from '../../Components/Table/Table';
 
 export default function Candidates() {
-  const[candidateStatus,setCandidateStatus]=useState('')
   
-  const status=[
-    {value:'pending',label:'Pending'},
-    {value:'rejected',label:'Rejected'},
-    {value:'Interview',label:'Interview in process'},
-    {value:'acepted',label:'Accepted'},]
+
+  const status = [
+    
+    { value: 'pending', label: 'Pending' },
+    { value: 'rejected', label: 'Rejected' },
+    { value: 'Interview', label: 'Interview in process' },
+    { value: 'acepted', label: 'Accepted' },
+  ];
   const { user } = useAuth();
   const { theme } = useTheme();
 
@@ -25,31 +27,53 @@ export default function Candidates() {
   const columns = [
     { header: 'Job Title', accessorKey: 'title' },
     { header: 'Department', accessorKey: 'department' },
-    
-    { header: 'Employee ID', accessorKey: 'userId' },
-    { header: 'Employee ID', accessorKey: 'status', cell:({row})=>{
 
-      
+    { header: 'Employee ID', accessorKey: 'userId' },
+    { header: 'Status', accessorKey: 'status', cell: ({ row }) => {
+      const currentStatus=row.original.status
+     return user.role==='manager'?<Select classNamePrefix='rs' isSearchable={false} options={status} value={status.find(o=>o.value===row.original.status)} onChange={(val)=>controlCandidateStatus(row.original.id,val)}
+        />:currentStatus
+
     } },
     {
       header: 'Resume',
-      accessorKey: 'fileData', // this is your Base64 string
+      accessorKey: 'fileData', 
       cell: ({ row }) => {
-        const { fileData, fileType } = row.original; // adjust based on your API
+        const { fileData, fileType } = row.original; 
         return (
           <button
             onClick={() => openPdf(fileData, fileType)}
-            className="rounded bg-green px-2 py-1 text-white"
+            className="bg-green rounded px-2 py-1 text-white"
           >
             View PDF
           </button>
         );
       },
     },
-    
   ];
+async function controlCandidateStatus(rowID, newStatus) {
+  try {
 
-  // Manager and admin dropdown options
+
+    await api.patch(`/recommendations/${rowID}`, {
+      status: newStatus.value,
+    });
+
+    
+    setRecommendations((prev) =>
+      prev.map((item) =>
+        item.id === rowID
+          ? { ...item, status: newStatus }
+          : item
+      )
+    );
+
+    toast.success('Status updated');
+  } catch (err) {
+    toast.error('Failed to update status');
+  }
+}
+  
   const managerOptions = [
     { value: '', label: 'Candidates' },
     { value: 'myCandidates', label: 'My Candidates' },
@@ -77,12 +101,18 @@ export default function Candidates() {
     async function fetchData() {
       try {
         const res = await api.get('/recommendations');
-        const data = res?.data || [];
+        let data = res?.data || [];
+        user?.role==='manager'?data.filter(c=>c.department===user.department||c.userId) :user?.role==='employee'?data.filter(c=>user.id===c.userId):data=data
+
+
+
         setAllRecommendations(data);
 
         // initial filter
         setRecommendations(filterLogic(data, filter, user));
       } catch (error) {
+        console.log(error);
+        
         console.log(error);
         theme === 'dark'
           ? toast.error('Error loading data', {
@@ -110,12 +140,12 @@ export default function Candidates() {
   function filterLogic(allCandidates, filter, user) {
     let filteredCandidates = [];
 
-    if (user.role === 'employee') {
-      // Employee: only their own candidates
+    if (user?.role === 'employee') {
+      
       filteredCandidates = recommendations;
     }
 
-    if (user.role === 'manager') {
+    if (user?.role === 'manager') {
       // Manager logic similar to your original
       filteredCandidates = allCandidates.filter((c) => {
         if (filter === 'myCandidates') return c.userId === user.id;
@@ -125,7 +155,7 @@ export default function Candidates() {
       });
     }
 
-    if (user.role === 'admin') {
+    if (user?.role === 'admin') {
       // Admin logic similar to your original
       filteredCandidates = allCandidates.filter((c) => {
         if (!filter || filter === 'all') return true;
