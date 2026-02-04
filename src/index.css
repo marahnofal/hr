@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @layer base {
+  
   :root {
     --bg: 248 250 252; /* light background */
     --text: 15 23 42; /* light text */
@@ -87,4 +88,5 @@
   .border-default {
     border: rgba(162, 161, 168, 0.2) solid 2px;
   }
+  
 }

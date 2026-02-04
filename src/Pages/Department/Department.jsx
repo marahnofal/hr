@@ -44,7 +44,7 @@ export default function Department() {
   }, []);
   return (
     <>
-      <div className="mx-6 grid grid-cols-2 gap-2">
+      <div className="mx-6 grid grid-cols-1 gap-2 md:grid-cols-2">
 
         {allDepartment?.filter(d=>d.name!=='GLOBAL').map((dep) => (
          <div className="flex flex-col gap-2 mt-3 p-4 border-2 border-gray-600 dark:border-gray-300">

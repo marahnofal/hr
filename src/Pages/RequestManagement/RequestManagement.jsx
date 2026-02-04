@@ -81,7 +81,7 @@ export default function RequestManagement() {
       cell: (info) => {
         const row = info.row.original;
 
-        return row.status === 'pending' && user.role === 'manager' ? (
+        return row.status === 'pending' && user.role === 'manager' ||'admin' ? (
           <div className="flex gap-1">
             <button
               onClick={() => statusManagement(row.id, 'rejected')}
@@ -118,7 +118,9 @@ export default function RequestManagement() {
 
   return (
     <>
-      <div className="flex justify-between">
+    
+<div className='flex flex-col gap-5'>
+          <div className="flex flex-col  md:flex-row md:justify-between  ">
         <Search />
         <div className="flex items-center">
           <i className="fa-solid fa-filter text-green"></i>
@@ -132,9 +134,12 @@ export default function RequestManagement() {
           />
         </div>
       </div>
-      <div className="mx-auto w-[90%]">
+      <div className="mx-auto w-[90%] h-screen">
         <Table column={columns} rows={filteredLeaveRequest} />
       </div>
+
+</div>
+      
     </>
   );
 }

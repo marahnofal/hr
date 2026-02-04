@@ -10643,8 +10643,8 @@
       "userId": "u-002",
       "department": "WEB",
       "type": "planned",
-      "from": "2026-02-01T22:00:00.000Z",
-      "to": "2026-02-24T22:00:00.000Z",
+      "from": "2026-02-01",
+      "to": "2026-02-24",
       "reason": "jk",
       "status": "approved"
     },
@@ -10654,8 +10654,8 @@
       "userId": "u-009",
       "department": "WEB",
       "type": "sick",
-      "from": "2026-02-10T22:00:00.000Z",
-      "to": "2026-02-11T22:00:00.000Z",
+      "from": "2026-02-10",
+      "to": "2026-02-11",
       "reason": "vff",
       "status": "pending"
     },
@@ -10665,8 +10665,8 @@
       "userId": "u-009",
       "department": "WEB",
       "type": "planned",
-      "from": "2026-02-19T22:00:00.000Z",
-      "to": "2026-02-27T22:00:00.000Z",
+      "from": "2026-02-19",
+      "to": "2026-02-27T",
       "reason": "mmm",
       "status": "pending"
     },
@@ -10676,9 +10676,20 @@
       "userId": "u-007",
       "department": "WEB",
       "type": "emergency",
-      "from": "2026-02-16T22:00:00.000Z",
-      "to": "2026-02-26T22:00:00.000Z",
+      "from": "2026-02-16",
+      "to": "2026-02-26",
       "reason": "hhh",
+      "status": "pending"
+    },
+    {
+      "id": "bb39",
+      "name": "Alice Wong",
+      "userId": "u-006",
+      "department": "WEB",
+      "type": "planned",
+      "from": "2026-02-27",
+      "to": "2026-03-01",
+      "reason": "aaa",
       "status": "pending"
     }
   ]

@@ -122,7 +122,7 @@ export default function Admin() {
             )}
           </div>
         </div>
-        <div className="fixed end-0 top-20 col-span-3 md:col-span-1">
+        <div className="fixed end-0 top-20 col-span-3 md:col-span-1 hidden md:block">
           <Calender tasks={tasks} />
         </div>
       </div>

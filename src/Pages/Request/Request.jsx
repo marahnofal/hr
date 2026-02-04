@@ -36,8 +36,8 @@ export default function Request() {
           userId: user?.id,
           department: user?.department_id,
           type: values.Type,
-          from: values.FromDate,
-          to: values.ToDate,
+          from: values.FromDate.toISOString().split('T')[0],
+          to: values.ToDate.toISOString().split('T')[0],
           reason: values.Reason,
           status: 'pending',
         });
@@ -57,7 +57,7 @@ export default function Request() {
   ];
   return (
     <>
-      <form onSubmit={formik.handleSubmit} action="" className="mx-2">
+      <form onSubmit={formik.handleSubmit} action="" className="ml-10 ">
         <div>
           <Select
             classNamePrefix="rs"
@@ -71,14 +71,14 @@ export default function Request() {
             <p className="text-red-500">{formik.errors.Type}</p>
           )}
         </div>
-        <div className="flex items-center gap-10">
+        <div className="flex flex-col md:flex-row items-center  md:justify-evenly">
           <DatePicker
             selected={formik.values.FromDate}
             onChange={(date) => formik.setFieldValue('FromDate', date)}
             onBlur={() => formik.setFieldTouched('FromDate', true)}
             placeholderText="Starting Date"
             minDate={today}
-            className="border-default col-span-1 my-2 h-[56px] w-full rounded-lg border-2 px-2 outline-0"
+            className="border-default col-span-1 my-2 h-[56px] w-full rounded-lg border-2 px-2 outline-0 w-{100%} md:w-{40%}"
           />
           {formik.errors.FromDate && formik.touched.FromDate && (
             <p className="text-red-500">{formik.errors.FromDate}</p>

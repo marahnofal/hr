@@ -107,7 +107,7 @@ export default function Sidebar() {
 
   return (
     <nav className="fixed h-full w-[65px] shadow-lg md:w-60">
-      <div className="flex h-full flex-col justify-between px-4 py-6">
+      <div className="flex h-full flex-col justify-between px-4 py-6 fixed">
         {/* Logo */}
         <div className="mb-6">
           {theme === 'light' ? (
