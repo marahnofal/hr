@@ -57,7 +57,7 @@ export default function Login() {
   return (
     <>
       <div className="flex h-screen w-full flex-col items-center justify-center">
-        <div className="flex h-[440px] w-[445px] flex-col gap-5 px-5">
+        <div className="flex md:h-1/3 md:w-1/3 w-full flex-col gap-1 md:gap-5 px-5">
           <div className="w-32">
             <img src={logo} alt="" />
           </div>
@@ -116,7 +116,7 @@ export default function Login() {
             </div>
             <button
               type="submit"
-              className="bg-green rounded-md p-4 text-lg text-white"
+              className="bg-green rounded-md  p-2  text-lg text-white"
             >
               Log in
             </button>

@@ -13,8 +13,8 @@ export default function Table({ column, rows }) {
   });
 
   return (
-    <div className="bg-neutral-primary-soft rounded-base w-full overflow-x-auto shadow-xs">
-      <table className="mx-auto w-full min-w-[600px] border-collapse text-left rtl:text-right overflow-auto">
+    <div className="bg-neutral-primary-soft rounded-base w-full overflow-x-auto shadow-xs   ">
+      <table className="mx-auto w-full min-w-[600px] border-collapse text-left rtl:text-right  ">
         {/* Sticky Header */}
         <thead className="sticky top-0 z-10 bg-neutral-secondary-soft">
           {table.getHeaderGroups().map((group) => (

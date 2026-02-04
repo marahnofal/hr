@@ -17,7 +17,7 @@ export default function Layout() {
         <div className="flex w-full flex-col">
           <div className=' ml-[65px] md:ml-0'><Navbar /></div>
 
-          <div className=' ml-[65px] md:ml-0'><Outlet /></div>
+          <div className=' ml-[40px] md:ml-0'><Outlet /></div>
         </div>
       </div>
     </>
