@@ -65,17 +65,17 @@ function duration(){
     <>
     <div className=' flex justify-center items-center  h-screen '>
       
-      <div className='text-center flex flex-col gap-5 p-12 rounded-2xl shadow-2xl items-center'>
+      <div className='text-center flex flex-col gap-5 p-12 rounded-2xl shadow-2xl items-center w-3/4 '>
         <img src={logo} className='w-24' alt="" />
         
-        <p className='text-4xl font-light'>Welcome {user.name.split(' ')[0]}</p>
-        <h1 className="text-7xl font-bold">{time}</h1>
+        <p className='md:text-4xl text-2xl  font-light'>Welcome {user.name.split(' ')[0]}</p>
+        <h1 className="md:text-7xl text-4xl font-bold">{time}</h1>
         <p className=' text-gray-400'><i className="fa-regular fa-calendar text-green"></i>{date}</p>
         
         <h1 className='font-bold'>{checked?checked:'--'}</h1>
         <p className='text-2xl'>checked In Time: {checkIn.time}</p>
-        <p className='text-2xl'> checked Out Time: {checkOut.time}</p>
-        <p className='text-2xl'>Duration: {checkIn.timeStamp&&checkOut.timeStamp&&duration()}</p>
+        <p className='md:text-2xl '> checked Out Time: {checkOut.time}</p>
+        <p className='md:text-2xl'>Duration: {checkIn.timeStamp&&checkOut.timeStamp&&duration()}</p>
     <div className='flex justify-around  w-[300px]'>
           <button onClick={checkinEvent} className='text-white bg-green rounded-xl p-3 '>Checkin</button>
         <button className='text-white bg-green rounded-xl p-3 ' onClick={checkoutEvent}>Check out</button>

@@ -108,7 +108,7 @@ export default function Navbar() {
                 <h2 className="text-lg font-bold">
                   {user?.name.split(' ')[0]}
                 </h2>
-                <p className="font-light">{user?.job_title}</p>
+                <p className="font-light">{user?.job_title.split(' ')[0]}</p>
               </div>
             </div>
           </div>
