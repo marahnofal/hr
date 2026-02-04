@@ -537,18 +537,18 @@
       "user_id": "u-006",
       "employee_name": "Alice Wong",
       "department_id": "WEB",
-      "date": "2026-02-02",
-      "day": "Friday",
+      "date": "2026-02-04",
+      "day": "Tuesday",
       "check_in": "09:00",
-      "status": "ontime"
+      "status": "Leave"
     },
     {
       "id": "att-0002",
       "user_id": "u-006",
       "employee_name": "Alice Wong",
       "department_id": "WEB",
-      "date": "2026-02-02",
-      "day": "Friday",
+      "date": "2026-02-04",
+      "day": "Tuesday",
       "check_in": "09:20",
       "status": "late"
     },
@@ -558,7 +558,7 @@
       "employee_name": "Alice Wong",
       "department_id": "WEB",
       "date": "2026-02-04",
-      "day": "Monday",
+      "day": "Tuesday",
       "check_in": "09:02",
       "status": "ontime"
     },
@@ -1658,7 +1658,7 @@
       "employee_name": "Fiona Gallagher",
       "department_id": "WEB",
       "date": "2026-02-04",
-      "day": "Monday",
+      "day": "Tuesday",
       "check_in": null,
       "status": "leave"
     },
@@ -1667,7 +1667,7 @@
       "user_id": "u-011",
       "employee_name": "Fiona Gallagher",
       "department_id": "WEB",
-      "date": "2026-02-05",
+      "date": "2026-02-04",
       "day": "Tuesday",
       "check_in": "09:00",
       "status": "ontime"
