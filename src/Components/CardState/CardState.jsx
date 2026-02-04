@@ -3,7 +3,7 @@ import { users2 } from '../../assets/data';
 export default function CardState({ image, title, records, percentage }) {
   return (
     <>
-      <div className="md:me-5 flex flex-col justify-between rounded-lg border-2 border-gray-200 p-5">
+      <div className="md:me-5 flex ms-0 flex-col justify-between rounded-lg border-2 border-gray-200 p-5">
         <div className="flex gap-4">
           <div className="h-5 w-5">
             <img src={image} className="w-full" alt="" />

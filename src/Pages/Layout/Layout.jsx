@@ -9,15 +9,19 @@ export default function Layout() {
     <>
       <div className="flex min-h-screen w-full gap-7 lg:gap-9">
         {user && (
-          <aside className="me-5 md:w-50">
+          <aside className="fixed top-0 left-0 me-5 overflow-auto md:w-50">
             <Sidebar />
           </aside>
         )}
 
         <div className="flex w-full flex-col">
-          <div className=' ml-[65px] md:ml-0'><Navbar /></div>
+          <div className="ml-[65px] md:ml-50">
+            <Navbar />
+          </div>
 
-          <div className=' ml-[40px] md:ml-0'><Outlet /></div>
+          <div className="ml-[50px] md:ml-50">
+            <Outlet />
+          </div>
         </div>
       </div>
     </>

@@ -2,9 +2,9 @@ import { Link, useNavigate } from 'react-router-dom';
 
 // Icons
 import { MdOutlineDashboard, MdOutlinePeople } from 'react-icons/md';
-import { CiLogout } from "react-icons/ci";
-import { CiSun } from "react-icons/ci";
-import { FaRegMoon } from "react-icons/fa";
+import { CiLogout } from 'react-icons/ci';
+import { CiSun } from 'react-icons/ci';
+import { FaRegMoon } from 'react-icons/fa';
 import { RiUserSettingsLine, RiUserCommunityLine } from 'react-icons/ri';
 import { FaRegCalendarCheck } from 'react-icons/fa';
 import { PiNotepad } from 'react-icons/pi';
@@ -108,7 +108,7 @@ export default function Sidebar() {
   );
 
   return (
-    <nav className="fixed h-full w-[65px] shadow-lg md:w-60">
+    <nav className="fixed h-full w-[65px] shadow-lg md:w-50">
       <div className="flex h-full flex-col justify-between px-4 py-6">
         {/* Logo */}
         <div className="mb-6">
@@ -147,16 +147,25 @@ export default function Sidebar() {
         </div>
 
         {/* Theme Toggle */}
-        <div className="flex flex-col md:items-start ">
-          <button className='hidden md:block' onClick={logoutButton}>Log Out</button>
-          <button className=' md:hidden' onClick={logoutButton}><CiLogout size={22} /></button>
+        <div className="flex flex-col md:items-start">
+          <button className="hidden md:block" onClick={logoutButton}>
+            Log Out
+          </button>
+          <button className="md:hidden" onClick={logoutButton}>
+            <CiLogout size={22} />
+          </button>
           <button
             onClick={toggleTheme}
             className="mt-6 flex items-center justify-center gap-2 rounded-lg px-3 py-2 transition-colors"
           >
-            
-         <span className='md:hidden'>{theme === 'light' ? <FaRegMoon size={22} /> : <CiSun size={22} />}</span>
-          
+            <span className="md:hidden">
+              {theme === 'light' ? (
+                <FaRegMoon size={22} />
+              ) : (
+                <CiSun size={22} />
+              )}
+            </span>
+
             <span className="hidden md:block">
               {theme === 'light' ? 'Dark Mode' : 'Light Mode'}
             </span>
