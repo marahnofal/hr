@@ -66,6 +66,14 @@ export default function Navbar() {
       header: 'Design Department',
       title: 'Department Details ',
     },
+    '/showtasks': {
+      header: 'Assigned Tasks',
+      title: 'What to do ',
+    },
+    '/assigntask': {
+      header: 'Assign Task',
+      title: ' To-Do',
+    },
   };
   const { pathname } = useLocation();
   const page = nav_content[pathname] || { header: 'page', title: '' };
@@ -73,12 +81,12 @@ export default function Navbar() {
   return (
     <>
       <nav className="align-center mx-auto flex h-25 w-full justify-between rounded-lg p-[30px]">
-        <div className="hidden justify-center md:flex md:flex-col">
+        <div className=" justify-center md:flex md:flex-col">
           <h2 className="text-xl font-bold">{page.header}</h2>
           <p>{page.title}</p>
         </div>
         {localStorage.getItem('token') !== null && (
-          <div className="flex items-center justify-center gap-5">
+          <div className="md:flex items-center justify-center gap-5 hidden ">
             <form className="mx-auto w-full md:max-w-md">
               <label
                 htmlFor="search"

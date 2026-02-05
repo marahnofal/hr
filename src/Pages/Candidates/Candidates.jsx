@@ -7,10 +7,7 @@ import Select from 'react-select';
 import Table from '../../Components/Table/Table';
 
 export default function Candidates() {
-  
-
   const status = [
-    
     { value: 'pending', label: 'Pending' },
     { value: 'rejected', label: 'Rejected' },
     { value: 'Interview', label: 'Interview in process' },
@@ -23,23 +20,34 @@ export default function Candidates() {
   const [recommendations, setRecommendations] = useState([]);
   const [filter, setFilter] = useState('');
 
-  // Table columns
   const columns = [
     { header: 'Job Title', accessorKey: 'title' },
     { header: 'Department', accessorKey: 'department' },
 
     { header: 'Employee ID', accessorKey: 'userId' },
-    { header: 'Status', accessorKey: 'status', cell: ({ row }) => {
-      const currentStatus=row.original.status
-     return user.role==='manager'?<Select classNamePrefix='rs' isSearchable={false} options={status} value={status.find(o=>o.value===row.original.status)} onChange={(val)=>controlCandidateStatus(row.original.id,val)}
-        />:currentStatus
-
-    } },
+    {
+      header: 'Status',
+      accessorKey: 'status',
+      cell: ({ row }) => {
+        const currentStatus = row.original.status;
+        return user.role === 'manager' ? (
+          <Select
+            classNamePrefix="rs"
+            isSearchable={false}
+            options={status}
+            value={status.find((o) => o.value === row.original.status)}
+            onChange={(val) => controlCandidateStatus(row.original.id, val)}
+          />
+        ) : (
+          currentStatus
+        );
+      },
+    },
     {
       header: 'Resume',
-      accessorKey: 'fileData', 
+      accessorKey: 'fileData',
       cell: ({ row }) => {
-        const { fileData, fileType } = row.original; 
+        const { fileData, fileType } = row.original;
         return (
           <button
             onClick={() => openPdf(fileData, fileType)}
@@ -51,29 +59,27 @@ export default function Candidates() {
       },
     },
   ];
-async function controlCandidateStatus(rowID, newStatus) {
-  try {
+  async function controlCandidateStatus(rowID, newStatus) {
+    try {
+      await api.patch(`/recommendations/${rowID}`, {
+        status: newStatus.value,
+      });
+       setRecommendations((prev) =>
+        prev.map((rec) =>
+          rec.id === rowID
+            ? { ...rec, status: newStatus.value }
+            : rec
+        )
+      );
 
+     
 
-    await api.patch(`/recommendations/${rowID}`, {
-      status: newStatus.value,
-    });
-
-    
-    setRecommendations((prev) =>
-      prev.map((item) =>
-        item.id === rowID
-          ? { ...item, status: newStatus }
-          : item
-      )
-    );
-
-    toast.success('Status updated');
-  } catch (err) {
-    toast.error('Failed to update status');
+      toast.success('Status updated');
+    } catch (err) {
+      toast.error('Failed to update status');
+    }
   }
-}
-  
+
   const managerOptions = [
     { value: '', label: 'Candidates' },
     { value: 'myCandidates', label: 'My Candidates' },
@@ -88,7 +94,7 @@ async function controlCandidateStatus(rowID, newStatus) {
     { value: 'graphics', label: 'Graphics Candidates' },
   ];
 
-  // Choose dropdown options based on role
+  
   const options =
     user?.role === 'manager'
       ? managerOptions
@@ -96,23 +102,25 @@ async function controlCandidateStatus(rowID, newStatus) {
         ? adminOptions
         : [];
 
-  // Fetch data
+  
   useEffect(() => {
     async function fetchData() {
       try {
         const res = await api.get('/recommendations');
         let data = res?.data || [];
-        user?.role==='manager'?data.filter(c=>c.department===user.department||c.userId) :user?.role==='employee'?data.filter(c=>user.id===c.userId):data=data
-
-
+        user?.role === 'manager'
+          ? data.filter((c) => c.department === user.department || c.userId)
+          : user?.role === 'employee'
+            ? data.filter((c) => user.id === c.userId)
+            : (data = data);
 
         setAllRecommendations(data);
 
-        // initial filter
+        
         setRecommendations(filterLogic(data, filter, user));
       } catch (error) {
         console.log(error);
-        
+
         console.log(error);
         theme === 'dark'
           ? toast.error('Error loading data', {
@@ -129,28 +137,24 @@ async function controlCandidateStatus(rowID, newStatus) {
     fetchData();
   }, [user]);
 
-  // Apply filter whenever filter changes
   useEffect(() => {
     if (allRecommendations.length) {
       setRecommendations(filterLogic(allRecommendations, filter, user));
     }
   }, [filter, allRecommendations, user]);
 
-  // --- This is your original logic rewritten cleanly ---
   function filterLogic(allCandidates, filter, user) {
     let filteredCandidates = [];
 
     if (user?.role === 'employee') {
-      
       filteredCandidates = recommendations;
     }
 
     if (user?.role === 'manager') {
-      // Manager logic similar to your original
       filteredCandidates = allCandidates.filter((c) => {
         if (filter === 'myCandidates') return c.userId === user.id;
         if (filter === 'department') return c.department === user.department_id;
-        // default: both my and department candidates
+
         return c.userId === user.id || c.department === user.department_id;
       });
     }
@@ -168,7 +172,6 @@ async function controlCandidateStatus(rowID, newStatus) {
   function openPdf(base64String, fileType = 'application/pdf') {
     if (!base64String) return;
 
-    // Remove data URL prefix if exists
     const cleanedBase64 = base64String.includes('base64,')
       ? base64String.split('base64,')[1]
       : base64String;
@@ -191,7 +194,6 @@ async function controlCandidateStatus(rowID, newStatus) {
 
   return (
     <div className="p-4">
-      {/* Dropdown only for manager/admin */}
       {options.length > 0 && (
         <div className="mb-4 w-[50%]">
           <Select

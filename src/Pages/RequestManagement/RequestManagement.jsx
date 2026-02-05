@@ -81,7 +81,7 @@ export default function RequestManagement() {
       cell: (info) => {
         const row = info.row.original;
 
-        return row.status === 'pending' && user.role === 'manager' ||'admin' ? (
+        return row.status === 'pending' &&( user.role === 'manager' ||'admin') ? (
           <div className="flex gap-1">
             <button
               onClick={() => statusManagement(row.id, 'rejected')}

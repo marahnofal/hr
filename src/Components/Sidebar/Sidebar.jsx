@@ -1,6 +1,9 @@
 import { Link, useNavigate } from 'react-router-dom';
 
 // Icons
+import { LuListTodo } from "react-icons/lu";
+import { MdOutlineAddTask } from "react-icons/md";
+
 import { MdOutlineDashboard, MdOutlinePeople } from 'react-icons/md';
 import { CiLogout } from 'react-icons/ci';
 import { CiSun } from 'react-icons/ci';
@@ -91,13 +94,22 @@ export default function Sidebar() {
       path: '/checkin',
       role: ['manager', 'employee'],
     },
+
     {
       id: 12,
-      label: 'request',
-      icon: CiSquareQuestion,
-      path: '/request',
-      role: ['manager', 'employee'],
+      label: 'Tasks',
+      icon: LuListTodo,
+      path: '/showtasks',
+      role: ['manager','admin','employee'],
     },
+    {
+      id: 12,
+      label: 'Assign Task',
+      icon: MdOutlineAddTask,
+      path: '/assigntask',
+      role: ['manager','admin'],
+    },
+    
   ];
   const logoutButton = () => {
     logout();

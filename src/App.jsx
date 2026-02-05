@@ -22,6 +22,8 @@ import { Toaster } from 'react-hot-toast';
 import JobVacancy from './Components/JobVacancy/JobVacancy';
 import Candidates from './Pages/Candidates/Candidates';
 import PublicRoute from './routes/PublicRoute';
+import AssignTasks from './Pages/AssugnTasks/AssignTasks';
+import ShowTasks from './Pages/ShowTasks/ShowTasks';
 
 function App() {
   let route = createBrowserRouter([
@@ -114,6 +116,22 @@ function App() {
           element: (
             <ProtectedRoute allowedRole={['admin', 'manager']}>
               <RequestManagement />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: '/assigntask',
+          element: (
+            <ProtectedRoute allowedRole={['admin', 'manager']}>
+              <AssignTasks />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: '/showtasks',
+          element: (
+            <ProtectedRoute allowedRole={['employee', 'manager','admin']}>
+              <ShowTasks />
             </ProtectedRoute>
           ),
         },
