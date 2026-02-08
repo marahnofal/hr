@@ -9,8 +9,8 @@ import logo from '../../assets/logo.png';
 import { useAuth } from '../../context/ThemeContext/AuthContext';
 
 export default function Login() {
-  const theme=localStorage.getItem('theme');
-  const {login} = useAuth();
+  const theme = localStorage.getItem('theme');
+  const { login } = useAuth();
   const navigate = useNavigate();
   const [serverError, setServerError] = useState('');
   const loginScema = z.object({
@@ -35,28 +35,26 @@ export default function Login() {
       const user = await loginRequest(data.email, data.password);
       login(user);
 
-
       navigate('/admin');
     } catch (err) {
       setServerError(err.message);
-      
-      
-      theme==='dark'?toast.error(err.message,
-  {
-    style: {
-      borderRadius: '10px',
-      background: '#333',
-      color: '#fff',
-    },
-  }
-):toast.error(err.message);
+
+      theme === 'dark'
+        ? toast.error(err.message, {
+            style: {
+              borderRadius: '10px',
+              background: '#333',
+              color: '#fff',
+            },
+          })
+        : toast.error(err.message);
     }
   };
 
   return (
     <>
-      <div className="flex h-screen w-full flex-col items-center justify-center">
-        <div className="flex md:h-1/3 md:w-1/3 w-full flex-col gap-1 md:gap-5 px-5">
+      <div className="flex flex-col items-center justify-center">
+        <div className="flex w-full flex-col gap-1 px-5 md:h-1/3 md:w-1/3 md:gap-5">
           <div className="w-32">
             <img src={logo} alt="" />
           </div>
@@ -115,7 +113,7 @@ export default function Login() {
             </div>
             <button
               type="submit"
-              className="bg-green rounded-md  p-2  text-lg text-white"
+              className="bg-green rounded-md p-2 text-lg text-white"
             >
               Log in
             </button>
