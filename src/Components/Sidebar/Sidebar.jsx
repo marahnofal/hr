@@ -4,23 +4,18 @@ import { Link, useNavigate } from 'react-router-dom';
 import { LuListTodo } from "react-icons/lu";
 import { MdOutlineAddTask } from "react-icons/md";
 
+import { CiCircleCheck, CiLogout, CiSun } from 'react-icons/ci';
+import { FaRegCalendarCheck, FaRegMoon } from 'react-icons/fa';
 import { MdOutlineDashboard, MdOutlinePeople } from 'react-icons/md';
-import { CiLogout } from 'react-icons/ci';
-import { CiSun } from 'react-icons/ci';
-import { FaRegMoon } from 'react-icons/fa';
-import { RiUserSettingsLine, RiUserCommunityLine } from 'react-icons/ri';
-import { FaRegCalendarCheck } from 'react-icons/fa';
 import { PiNotepad } from 'react-icons/pi';
-import { SlCalender } from 'react-icons/sl';
-import { CiCircleCheck } from 'react-icons/ci';
-import { CiSquareQuestion } from 'react-icons/ci';
+import { RiUserCommunityLine, RiUserSettingsLine } from 'react-icons/ri';
 
 import { IoMdPeople } from 'react-icons/io';
 // Theme hook ✅
 import { useTheme } from '../../context/ThemeContext/ThemeContext.jsx';
 
 // Assets
-import { darkmoon, sun, logo, logoIcon, lightLogo } from '../../assets/data';
+import { lightLogo, logo, logoIcon } from '../../assets/data';
 import { useAuth } from '../../context/ThemeContext/AuthContext.jsx';
 
 export default function Sidebar() {

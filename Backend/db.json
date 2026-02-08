@@ -522,36 +522,7 @@
       "check_in": "09:20",
       "status": "late"
     },
-    {
-      "id": "att-0002",
-      "user_id": "u-006",
-      "employee_name": "Alice Wong",
-      "department_id": "WEB",
-      "date": "2026-02-01",
-      "day": "Friday",
-      "check_in": "09:20",
-      "status": "late"
-    },
-    {
-      "id": "att-0002",
-      "user_id": "u-006",
-      "employee_name": "Alice Wong",
-      "department_id": "WEB",
-      "date": "2026-02-04",
-      "day": "Tuesday",
-      "check_in": "09:00",
-      "status": "Leave"
-    },
-    {
-      "id": "att-0002",
-      "user_id": "u-006",
-      "employee_name": "Alice Wong",
-      "department_id": "WEB",
-      "date": "2026-02-04",
-      "day": "Tuesday",
-      "check_in": "09:20",
-      "status": "late"
-    },
+
     {
       "id": "att-0003",
       "user_id": "u-006",
@@ -582,16 +553,7 @@
       "check_in": "09:00",
       "status": "ontime"
     },
-    {
-      "id": "att-0006",
-      "user_id": "u-006",
-      "employee_name": "Alice Wong",
-      "department_id": "WEB",
-      "date": "2026-02-07",
-      "day": "Thursday",
-      "check_in": "09:00",
-      "status": "ontime"
-    },
+
     {
       "id": "att-0007",
       "user_id": "u-006",

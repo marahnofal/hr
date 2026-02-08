@@ -1,4 +1,3 @@
-import profileImage from '../../assets/pp.png';
 import { useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/ThemeContext/AuthContext';
 import Initials from '../Initials/Initials';
@@ -33,6 +32,10 @@ export default function Navbar() {
     '/checkin': {
       header: 'Daily Check in / Check out',
       title: 'Mark your Attendance',
+    },
+    '/role': {
+      header: 'Open Positions',
+      title: 'Inner Recommendations',
     },
     '/requestmanagement': {
       header: 'Leave Requests',

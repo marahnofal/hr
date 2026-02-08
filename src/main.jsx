@@ -7,11 +7,13 @@ import App from './App.jsx'
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { ThemeProvider } from './context/ThemeContext/ThemeContext.jsx';
 import { AuthProvider } from './context/ThemeContext/AuthContext.jsx';
+import { LoadingProvider } from './context/LoaderContext.jsx';
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <ThemeProvider>
+    <LoadingProvider>
+      <ThemeProvider>
       
     
       <AuthProvider>
@@ -20,6 +22,8 @@ createRoot(document.getElementById('root')).render(
     
       
     </ThemeProvider>
+    </LoadingProvider>
+    
     
   </StrictMode>,
 )

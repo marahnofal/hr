@@ -1,5 +1,4 @@
-import React, { use, useState } from 'react';
-import Department from './../../Pages/Department/Department';
+import { useState } from 'react';
 
 export default function CardEdit({ data, update, remove }) {
   const [opened, setOpened] = useState(false);

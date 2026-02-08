@@ -1,5 +1,3 @@
-import React from 'react';
-import { users2 } from '../../assets/data';
 export default function CardState({ image, title, records, percentage }) {
   return (
     <>

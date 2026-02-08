@@ -1,18 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import employeesData from './rows';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import departmentsData from './rows';
-import api from './../../Services/api';
 import Initials from '../../Components/Initials/Initials';
+import api from './../../Services/api';
+import toast from 'react-hot-toast';
+import { useLoading } from '../../context/LoaderContext';
 
 
 
 export default function Department() {
   const [allDepartment, setAllDepartment] = useState([]);
+  const{loading,setLoading}=useLoading();
 
   useEffect(() => {
     async function fetchData() {
       try {
+        setLoading(true);
+        await new Promise((resolve) => setTimeout(resolve, 1000));
         const res = await api.get('/users');
         const data = res?.data;
         const groupedDepartments = Object.values(
@@ -37,6 +40,8 @@ export default function Department() {
         console.log(error);
         
         toast.error(error);
+      }finally{
+        setLoading(false);
       }
     }
 

@@ -1,5 +1,4 @@
-import React from "react";
-import { Formik, useFormik } from "formik";
+import { useFormik } from "formik";
 import * as Yup from "yup";
 export default function Register() {
   const validation = Yup.object().shape({

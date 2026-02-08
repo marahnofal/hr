@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import Select from 'react-select';
+import { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import Select from 'react-select';
+import * as Yup from 'yup';
 
+import toast from 'react-hot-toast';
 import api from '../../Services/api';
 import { useAuth } from '../../context/ThemeContext/AuthContext';
-import toast from 'react-hot-toast';
 
 export default function AssignTasks() {
   const { user } = useAuth();
@@ -15,9 +15,7 @@ export default function AssignTasks() {
 
   const today = new Date();
 
-  // =======================
-  // OPTIONS
-  // =======================
+ 
   const adminOptions = [
     { value: 'WEB', label: 'Web Department' },
     { value: 'QUALITY', label: 'Quality Department' },
@@ -167,7 +165,7 @@ export default function AssignTasks() {
           <p className="text-sm text-red-500">{formik.errors.toDate}</p>
         )}
 
-        {/* Task Description */}
+        
         <textarea
           name="description"
           value={formik.values.description}
@@ -181,7 +179,7 @@ export default function AssignTasks() {
           <p className="text-sm text-red-500">{formik.errors.description}</p>
         )}
 
-        {/* Submit Button */}
+        
         <button
           type="submit"
           disabled={!formik.isValid || formik.isSubmitting}

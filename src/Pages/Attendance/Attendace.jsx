@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-import Table from '../../Components/Table/Table';
+import toast from 'react-hot-toast';
 import Search from '../../Components/Search/Search';
+import Table from '../../Components/Table/Table';
 import { useAuth } from '../../context/ThemeContext/AuthContext';
 import api from '../../Services/api';
 import Initials from './../../Components/Initials/Initials';
-import toast from 'react-hot-toast';
+import { useLoading } from '../../context/LoaderContext';
 
 export default function Attendace() {
   const [attendanceData, setAttendanceData] = useState([]);
+  const{loading,setloading}=useLoading()
   const { user } = useAuth();
   const columns = [
     {

@@ -1,13 +1,12 @@
-import { useState } from 'react';
-import Navbar from '../../Components/Navbar/Navbar';
-import logo from '../../assets/logo.png';
-import { Link, useNavigate } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { loginRequest } from '../../Services/auth';
-import { useAuth } from '../../context/ThemeContext/AuthContext';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { Link, useNavigate } from 'react-router-dom';
+import { z } from 'zod';
+import { loginRequest } from '../../Services/auth';
+import logo from '../../assets/logo.png';
+import { useAuth } from '../../context/ThemeContext/AuthContext';
 
 export default function Login() {
   const theme=localStorage.getItem('theme');

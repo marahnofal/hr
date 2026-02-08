@@ -1,5 +1,3 @@
-import React from 'react';
-import Department from './../Department/Department';
 import { useForm } from 'react-hook-form';
 
 export default function () {

@@ -1,4 +1,3 @@
-import { date } from 'yup';
 import { avatar } from '../../assets/data';
 
 const attendanceData = [

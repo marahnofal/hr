@@ -10,8 +10,10 @@ import { useEffect, useEffectEvent, useState } from 'react';
 import api from '../../Services/api';
 import Initials from '../../Components/Initials/Initials';
 import { useAuth } from '../../context/ThemeContext/AuthContext';
+import { useLoading } from '../../context/LoaderContext';
 
 export default function Admin() {
+  const{loading,setLoading}=useLoading()
   const [showall, setShowAll] = useState(false);
   const { user } = useAuth();
   const [todayAttendance, setToayAttendance] = useState([]);
@@ -56,16 +58,28 @@ export default function Admin() {
   }
   useEffect(() => {
     async function fetchToday() {
-      const res = await api.get('/attendance');
+
+     try{
+      setLoading(true)
+       const res = await api.get('/attendance');
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+       
+
       let data = res?.data;
 
       const today = getTodayDate();
       if (user?.role === 'manager') {
-        data = data?.filter((emp) => emp.department_id == user.department_id);
+        data = usememodata?.filter((emp) => emp.department_id == user.department_id);
         setToayAttendance(filterDataByDate(data, today));
       }
 
       setToayAttendance(filterDataByDate(data, today));
+    }catch(err){
+      toast.error('Failed to fetch attendance data');
+     }finally{
+      setLoading(false)
+     }
+    
     }
     fetchToday();
   }, [user]);

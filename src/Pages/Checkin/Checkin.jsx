@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
-import { useLive } from '../../hooks/useLive.js'
+import { useState } from 'react';
 import { logo } from '../../assets/data';
 import { useAuth } from '../../context/ThemeContext/AuthContext.jsx';
+import { useLive } from '../../hooks/useLive.js';
 
 export default function Checkin() {
     const{user}=useAuth()

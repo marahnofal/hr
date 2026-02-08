@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import employeesData from './employeesData';
-import Table from '../../Components/Table/Table';
-import Initials from '../../Components/Initials/Initials';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Initials from '../../Components/Initials/Initials';
+import Table from '../../Components/Table/Table';
 import api from '../../Services/api';
+
 
 export default function DepartmentEmployees() {
   const { department } = useParams();

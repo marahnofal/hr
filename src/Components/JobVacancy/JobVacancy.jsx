@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import api from '../../Services/api';
-import { MdOutlineFileUpload } from 'react-icons/md';
-import Table from '../Table/Table';
-import { useAuth } from '../../context/ThemeContext/AuthContext';
+import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import { MdOutlineFileUpload } from 'react-icons/md';
+import { useAuth } from '../../context/ThemeContext/AuthContext';
+import api from '../../Services/api';
+import Table from '../Table/Table';
+import { useLoading } from '../../context/LoaderContext';
+import { ca } from 'zod/v4/locales';
+
 
 export default function JobVacancy() {
   const { user } = useAuth();
   const [vacancies, setVacancies] = useState([]);
   const [file, setFile] = useState(null);
+  const {loading,setLoading}=useLoading();
   //   const handleFileChange = (e) => {
   //     const selectedFiles = e.target.files[0];
   //     if (!selectedFiles) return;
@@ -90,11 +94,21 @@ export default function JobVacancy() {
   ];
   useEffect(() => {
     async function fetchData() {
-      const res = await api.get('/vacnceis');
+ try{
+      setLoading(true);
+
+     const res = await api.get('/vacnceis');
+     await new Promise((resolve) => setTimeout(resolve, 1000));
       let data = res?.data;
       setVacancies(data);
       console.log(vacancies);
+ }catch(error){
+      
+      toast.error('Failed to load vacancies');
+    }finally{
+      setLoading(false);  
     }
+  }
     fetchData();
   }, []);
 

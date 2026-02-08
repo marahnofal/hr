@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import api from './../../Services/api';
-import { useAuth } from '../../context/ThemeContext/AuthContext';
 import toast from 'react-hot-toast';
+import { useAuth } from '../../context/ThemeContext/AuthContext';
+import api from './../../Services/api';
 
 export default function Calendar() {
   const { user } = useAuth();
@@ -24,9 +24,6 @@ export default function Calendar() {
     .fill(null)
     .concat(Array.from({ length: daysInMonth }, (_, i) => i + 1));
 
-  /* =========================
-     FETCH TASKS
-  ========================= */
   useEffect(() => {
     async function fetchData() {
       try {

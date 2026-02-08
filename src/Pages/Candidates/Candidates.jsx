@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { useAuth } from '../../context/ThemeContext/AuthContext';
-import api from '../../Services/api';
-import { useTheme } from '../../context/ThemeContext/ThemeContext';
+import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import Select from 'react-select';
 import Table from '../../Components/Table/Table';
+import { useAuth } from '../../context/ThemeContext/AuthContext';
+import { useTheme } from '../../context/ThemeContext/ThemeContext';
+import api from '../../Services/api';
+import { useLoading } from '../../context/LoaderContext';
 
 export default function Candidates() {
   const status = [
@@ -15,6 +16,7 @@ export default function Candidates() {
   ];
   const { user } = useAuth();
   const { theme } = useTheme();
+  const { loading, setLoading } = useLoading();
 
   const [allRecommendations, setAllRecommendations] = useState([]);
   const [recommendations, setRecommendations] = useState([]);
@@ -61,22 +63,23 @@ export default function Candidates() {
   ];
   async function controlCandidateStatus(rowID, newStatus) {
     try {
+      setLoading(true);
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
       await api.patch(`/recommendations/${rowID}`, {
         status: newStatus.value,
       });
-       setRecommendations((prev) =>
+      setRecommendations((prev) =>
         prev.map((rec) =>
-          rec.id === rowID
-            ? { ...rec, status: newStatus.value }
-            : rec
+          rec.id === rowID ? { ...rec, status: newStatus.value } : rec
         )
       );
-
-     
 
       toast.success('Status updated');
     } catch (err) {
       toast.error('Failed to update status');
+    } finally {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
     }
   }
 
@@ -94,7 +97,6 @@ export default function Candidates() {
     { value: 'graphics', label: 'Graphics Candidates' },
   ];
 
-  
   const options =
     user?.role === 'manager'
       ? managerOptions
@@ -102,7 +104,6 @@ export default function Candidates() {
         ? adminOptions
         : [];
 
-  
   useEffect(() => {
     async function fetchData() {
       try {
@@ -116,7 +117,6 @@ export default function Candidates() {
 
         setAllRecommendations(data);
 
-        
         setRecommendations(filterLogic(data, filter, user));
       } catch (error) {
         console.log(error);
